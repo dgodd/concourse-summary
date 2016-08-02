@@ -1,0 +1,8 @@
+---
+applications:
+  - name: concoursesummary
+    command: ./download.rb
+    memory: 256M
+    buildpack: ruby_buildpack
+    env:
+      BASE_URL:
