@@ -61,7 +61,6 @@ EOF
 end
 
 
-# base_url = 'https://buildpacks.ci.cf-app.com'
 base_url = ENV['BASE_URL'] or raise "Set BASE_URL"
 
 app = Proc.new do |env|
