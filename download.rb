@@ -43,6 +43,7 @@ def gen_html(base_url)
   <body>
 EOF
 
+  safe_base_url = base_url.gsub(%r{//.*@},'//')
   data.each do |key, value|
     next unless value['finished'] && value['finished'].values.first
 
@@ -51,7 +52,7 @@ EOF
 
     p [ key, value ]
     html += <<-EOF
-    <a href="#{base_url}/pipelines/#{key}" target="_blank" class="outer">
+    <a href="#{safe_base_url}/pipelines/#{key}" target="_blank" class="outer">
       <div class="red" style="width: #{100 - (value * 100).round}%;"></div>
       <div class="inner">#{key}</div>
     </div>
