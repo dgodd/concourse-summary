@@ -33,11 +33,12 @@ def gen_html(base_url)
     <link rel="icon" type="image/png" href="https://buildpacks.ci.cf-app.com/public/favicons/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/png" href="https://buildpacks.ci.cf-app.com/public/favicons/favicon-16x16.png" sizes="16x16">
     <style>
-      body { margin:0; padding:0; }
-      a.outer { display:block; width: 200px; height: 120px; color: white; background: #090; position: relative; margin: 8px; float: left; }
-      div.red { position: absolute; top:0; bottom: 0; left:0;  background: #900; }
-      div.inner { position: absolute; top:0; bottom: 0; left:0; width: 100%; text-align: center; line-height: 120px; }
-      div.inner { font-family: sans-serif; font-size: 20px; white-space: nowrap; }
+      body { margin:0; padding:0; font-family: sans-serif; font-size: 20px; }
+      .outer { display:block; width: 200px; height: 120px; color: white; background: #090; position: relative; margin: 8px; float: left; }
+      .running { border: 7px solid yellow; box-sizing: border-box; outline: 3px solid #699; }
+      .red { position: absolute; top:0; bottom: 0; left:0;  background: #900; }
+      .inner { position: absolute; top:0; bottom: 0; left:0; right:0; text-align: center; line-height: 120px; white-space: nowrap; text-decoration: none; }
+      .running .inner { line-height: 100px; }
     </style>
   </head>
   <body>
@@ -47,12 +48,13 @@ EOF
   data.each do |key, value|
     next unless value['finished'] && value['finished'].values.first
 
+    running = value['next'].values.count > 0 ? 'running' : ''
     succeeded = value['finished']['succeeded'].to_f
     value = succeeded / value['finished'].values.reduce(:+).to_f
 
     p [ key, value ]
     html += <<-EOF
-    <a href="#{safe_base_url}/pipelines/#{key}" target="_blank" class="outer">
+    <a href="#{safe_base_url}/pipelines/#{key}" target="_blank" class="outer #{running}">
       <div class="red" style="width: #{100 - (value * 100).round}%;"></div>
       <div class="inner">#{key}</div>
     </div>
