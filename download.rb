@@ -26,8 +26,12 @@ def gen_html(base_url)
 <!DOCTYPE html>
 <html>
   <head>
-  <title>#{Time.now}</title>
+    <title>#{Time.now}</title>
     <meta http-equiv="refresh" content="30">
+    <link rel="icon" type="image/png" href="https://buildpacks.ci.cf-app.com/public/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://buildpacks.ci.cf-app.com/public/favicons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="https://buildpacks.ci.cf-app.com/public/favicons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="https://buildpacks.ci.cf-app.com/public/favicons/favicon-16x16.png" sizes="16x16">
     <style>
       body { margin:0; padding:0; }
       a.outer { display:block; width: 200px; height: 120px; color: white; background: #090; position: relative; margin: 8px; float: left; }

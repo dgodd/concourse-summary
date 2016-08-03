@@ -3,7 +3,7 @@ applications:
   - name: concourse-summary
     command: ./download.rb
     memory: 256M
-    buildpack: ruby_buildpack
+    buildpack: https://github.com/cloudfoundry/ruby-buildpack
     random-route: true
     env:
       BASE_URL: https://buildpacks.ci.cf-app.com
