@@ -51,7 +51,10 @@ def gen_html(base_url)
         fetch(location.pathname, {credentials: 'same-origin'}).then(function(response) {
           return response.text()
         }).then(function(txt) {
-          document.body.innerHTML=txt
+          var doc = document.implementation.createHTMLDocument("example")
+          doc.documentElement.innerHTML = txt
+          document.head.innerHTML=doc.head.innerHTML
+          document.body.innerHTML=doc.body.innerHTML
         }).catch(function(reason) {
           document.body.innerHTML="<h1>Error - " + Date() + "</h1><p>" + reason + "</p>"
         })
