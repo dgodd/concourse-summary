@@ -31,7 +31,6 @@ def gen_html(base_url)
 <html>
   <head>
     <title>#{Time.now}</title>
-    <meta http-equiv="refresh" content="30">
     <link rel="icon" type="image/png" href="https://buildpacks.ci.cf-app.com/public/favicons/favicon-32x32.png" sizes="32x32">
     <link rel="icon" type="image/png" href="https://buildpacks.ci.cf-app.com/public/favicons/android-chrome-192x192.png" sizes="192x192">
     <link rel="icon" type="image/png" href="https://buildpacks.ci.cf-app.com/public/favicons/favicon-96x96.png" sizes="96x96">
@@ -44,8 +43,20 @@ def gen_html(base_url)
       .inner { position: absolute; top:0; bottom: 0; left:0; right:0; text-align: center; line-height: 120px; white-space: nowrap; text-decoration: none; }
       .running .inner { line-height: 100px; }
     </style>
+    <script>
+      setInterval(function() {
+        fetch(location.pathname, {credentials: 'same-origin'}).then(function(response) {
+          return response.text()
+        }).then(function(txt) {
+          document.body.innerHTML=txt
+        }).catch(function(reason) {
+          document.body.innerHTML="<h1>Error - " + Date() + "</h1><p>" + reason + "</p>"
+        })
+      }, 30000)
+    </script>
   </head>
   <body>
+    <p>#{Time.now}</p>
 EOF
 
   safe_base_url = base_url.gsub(%r{//.*@},'//')
