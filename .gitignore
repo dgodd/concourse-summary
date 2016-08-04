@@ -1,0 +1,4 @@
+*.swp
+/download
+/.shards/
+/libs/
