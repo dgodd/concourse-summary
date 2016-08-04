@@ -46,6 +46,7 @@ def gen_html(base_url)
       .inner { display: flex; justify-content: center; flex-direction: column; height: 120px; }
       .running .inner { height: 100px; }
     </style>
+    <script src="https://cdn.rawgit.com/github/fetch/master/fetch.js"></script>
     <script>
       setInterval(function() {
         fetch(location.pathname, {credentials: 'same-origin'}).then(function(response) {
