@@ -4,10 +4,13 @@ require 'json'
 require 'rack'
 require 'rack/auth/basic'
 
+class Unauthorized < Exception; end
 def gen_html(base_url)
   data = {}
   conn = Faraday.new(url: base_url)
-  JSON.load(conn.get('/api/v1/pipelines').body).each do |pipeline|
+  resp = conn.get('/api/v1/pipelines')
+  raise Unauthorized.new if resp.status == 401
+  JSON.load(resp.body).each do |pipeline|
     name = pipeline['name']
     data[name] = { 'next' => Hash.new(0), 'finished' => Hash.new(0) }
     puts name
@@ -88,9 +91,12 @@ end
 class BasicAuth < Rack::Auth::Basic
   def call(env)
     auth = Rack::Auth::Basic::Request.new(env)
-    return unauthorized(%Q{Basic realm="env['REQUEST_PATH']"}) unless auth.provided?
-    env['REMOTE_USER_AUTH'] = auth.credentials.join(':')
-    return @app.call(env)    
+    env['REMOTE_USER_AUTH'] = auth.credentials.join(':') if auth.provided?
+    begin
+      @app.call(env)    
+    rescue Unauthorized
+      unauthorized(%Q{Basic realm="env['REQUEST_PATH']"})
+    end
   end
 end
 
