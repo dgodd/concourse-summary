@@ -2,6 +2,7 @@
 require 'faraday'
 require 'json'
 require 'rack'
+require 'rack/auth/basic'
 
 def gen_html(base_url)
   data = {}
@@ -68,9 +69,43 @@ EOF
 end
 
 
-base_url = ENV['BASE_URL'] or raise "Set BASE_URL"
-
-app = Proc.new do |env|
-  ['200', {'Content-Type' => 'text/html'}, [gen_html(base_url)]]
+if ENV['BASE_HOST']
+  BASE_HOST = ENV['BASE_HOST']
+elsif ENV['BASE_URL']
+  BASE_HOST = URI(ENV['BASE_URL']).host
+else
+  raise 'Set BASE_HOST. eg. appdog.ci.cf-app.com'
 end
-Rack::Handler::WEBrick.run app
+
+def unauthorized(base_url)
+  [ 401,
+    { 'CONTENT_TYPE' => 'text/plain',
+      'CONTENT_LENGTH' => '0',
+      'WWW-Authenticate' => %Q{Basic realm="#{base_url}"} },
+    [] ]
+end
+
+class BasicAuth < Rack::Auth::Basic
+  def call(env)
+    auth = Rack::Auth::Basic::Request.new(env)
+    return unauthorized(%Q{Basic realm="env['REQUEST_PATH']"}) unless auth.provided?
+    env['REMOTE_USER_AUTH'] = auth.credentials.join(':')
+    return @app.call(env)    
+  end
+end
+
+class App
+  def call(env)
+    if env['REQUEST_PATH']=='/'
+      [301, {'Location' => "/host/#{BASE_HOST}"}, []]
+    elsif env['REQUEST_PATH'].match(%r{/host/(.+)})
+      base_url = "https://#{env['REMOTE_USER_AUTH']}@#{$1}"
+      puts base_url
+      [200, {'Content-Type' => 'text/html'}, [gen_html(base_url)]]
+    else
+      [404, {}, []]
+    end
+  end
+end
+protected_app = BasicAuth.new(App.new) 
+Rack::Handler::WEBrick.run protected_app
