@@ -12,16 +12,18 @@ def gen_html(base_url)
   raise Unauthorized.new if resp.status == 401
   JSON.load(resp.body).each do |pipeline|
     name = pipeline['name']
-    data[name] = { 'next' => Hash.new(0), 'finished' => Hash.new(0) }
     puts name
     puts "/api/v1/pipelines/#{name}/jobs"
     resp = conn.get("/api/v1/pipelines/#{name}/jobs")
     JSON.load(resp.body).each do |job|
+      group = job['groups'].first rescue nil
+      data[[name, group]] ||= { 'next' => Hash.new(0), 'finished' => Hash.new(0) }
+
       next_build = job['next_build']
-      data[name]['next'][next_build['status']] += 1 if next_build
+      data[[name, group]]['next'][next_build['status']] += 1 if next_build
 
       finished_build = job['finished_build']
-      data[name]['finished'][finished_build['status']] += 1 if finished_build
+      data[[name, group]]['finished'][finished_build['status']] += 1 if finished_build
     end
   end
 
@@ -36,12 +38,13 @@ def gen_html(base_url)
     <link rel="icon" type="image/png" href="https://buildpacks.ci.cf-app.com/public/favicons/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/png" href="https://buildpacks.ci.cf-app.com/public/favicons/favicon-16x16.png" sizes="16x16">
     <style>
-      body { margin:0; padding:0; font-family: sans-serif; font-size: 20px; }
+      body { margin:0; padding:0; font-family: sans-serif; font-size: 20px; line-height: 1.6em; }
       .outer { display:block; width: 200px; height: 120px; color: white; background: #090; position: relative; margin: 8px; float: left; }
       .running { border: 7px solid yellow; box-sizing: border-box; outline: 3px solid #699; }
       .red { position: absolute; top:0; bottom: 0; left:0;  background: #900; }
-      .inner { position: absolute; top:0; bottom: 0; left:0; right:0; text-align: center; line-height: 120px; white-space: nowrap; text-decoration: none; }
-      .running .inner { line-height: 100px; }
+      .inner { position: absolute; top:0; bottom: 0; left:0; right:0; text-align: center; text-decoration: none; }
+      .inner { display: flex; justify-content: center; flex-direction: column; height: 120px; }
+      .running .inner { height: 100px; }
     </style>
     <script>
       setInterval(function() {
@@ -56,7 +59,7 @@ def gen_html(base_url)
     </script>
   </head>
   <body>
-    <p>#{Time.now}</p>
+    <div>#{Time.now}</div>
 EOF
 
   safe_base_url = base_url.gsub(%r{//.*@},'//')
@@ -66,12 +69,14 @@ EOF
     running = value['next'].values.count > 0 ? 'running' : ''
     succeeded = value['finished']['succeeded'].to_f
     value = succeeded / value['finished'].values.reduce(:+).to_f
+    name, group = key
+    href = "#{safe_base_url}/pipelines/#{name}"
+    href += "?groups=#{group}" if group
 
-    p [ key, value ]
     html += <<-EOF
-    <a href="#{safe_base_url}/pipelines/#{key}" target="_blank" class="outer #{running}">
+    <a href="#{href}" target="_blank" class="outer #{running}">
       <div class="red" style="width: #{100 - (value * 100).round}%;"></div>
-      <div class="inner">#{key}</div>
+      <div class="inner">#{[name, group].select{|x|x}.join('<br>')}</div>
     </div>
 EOF
   end
