@@ -91,14 +91,6 @@ else
   raise 'Set BASE_HOST. eg. appdog.ci.cf-app.com'
 end
 
-def unauthorized(base_url)
-  [ 401,
-    { 'CONTENT_TYPE' => 'text/plain',
-      'CONTENT_LENGTH' => '0',
-      'WWW-Authenticate' => %Q{Basic realm="#{base_url}"} },
-    [] ]
-end
-
 class BasicAuth < Rack::Auth::Basic
   def call(env)
     auth = Rack::Auth::Basic::Request.new(env)
@@ -106,7 +98,7 @@ class BasicAuth < Rack::Auth::Basic
     begin
       @app.call(env)    
     rescue Unauthorized
-      unauthorized(%Q{Basic realm="env['REQUEST_PATH']"})
+      unauthorized(%Q{Basic realm="#{env['REQUEST_PATH']}"})
     end
   end
 end
