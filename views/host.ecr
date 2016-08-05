@@ -7,10 +7,11 @@
     <link rel="icon" type="image/png" href="https://buildpacks.ci.cf-app.com/public/favicons/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/png" href="https://buildpacks.ci.cf-app.com/public/favicons/favicon-16x16.png" sizes="16x16">
     <style>
-      body { margin:0; padding:0; font-family: sans-serif; font-size: 20px; line-height: 1.6em; text-align:center; }
-      .outer { display:inline-block; width: 200px; height: 120px; color: white; background: #090; position: relative; margin: 8px; }
-      .running { border: 7px solid yellow; box-sizing: border-box; outline: 3px solid #699; }
-      .red { position: absolute; top:0; bottom: 0; left:0;  background: #900; }
+      body { margin:0; padding:0; font-family: monospace, sans-serif; font-size: 20px; line-height: 1.6em; text-align:center; background: #263748; color: white; }
+      .time { padding:0 8px; margin:0 0 16px 0; background: #1A252F; color: white; }
+      .outer { display:inline-block; width: 200px; height: 120px; color: white; background: #1ECE6D; position: relative; margin: 8px; }
+      .running { border: 7px solid #F2C500; box-sizing: border-box; }
+      .red { position: absolute; top:0; bottom: 0; left:0;  background: #E94B35; }
       .inner { position: absolute; top:0; bottom: 0; left:0; right:0; text-align: center; text-decoration: none; }
       .inner { display: flex; justify-content: center; flex-direction: column; height: 120px; }
       .running .inner { height: 100px; }
@@ -32,7 +33,7 @@
     </script>
   </head>
   <body>
-    <div style="margin:0 8px"><%= Time.now %></div>
+    <div class="time"><%= Time.now %></div>
 
     <% statuses.each do |data| %>
     <a href="https://<%= host %><%= data.href %>" target="_blank" class="outer<%= data.running ? " running" : "" %>">
