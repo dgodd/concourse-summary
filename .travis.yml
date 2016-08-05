@@ -6,6 +6,5 @@ deploy:
   password:
     secure: YUw4yUlYJSYRq7UkjVW+ayWvw36QnEepSog2H2lLisxlYlsxh4xAlFnyohWiTW5oKhnRto9LPyqrxTq2zwsX/8zodk/AOLNstNL1GHfh7hBabcz9FRgyyyz2STbC8dD17ZAILp+IMsXWThja+7uF/ER53C/+KFUhfRQdX0gLa5/plN5uwzcO80EpHpf79vjyAAT/nsoYCDrWDTBNRFJpGOPBZV13hvKSlx6dutxU/Flu35bc6o33/mKFeC6RrghZki7tiPisQmA+pCyBW801cnHggc4GdyeHy9L7A5b1/EvalGdXj+st+Q7iBIYoRFlDgEomyoGwTOSQGBwUkjy0hVV7Ycc965ePRHk3fz3xFCSRf6Vy5vFA4DrtdejW1DvOWuMtY98D9jeYNWLLzeV+Tb+ybwtKSH5xFD5rXn8yNTfe6pjjlCxw+0qDkuE1D0+2GEq8bLxYLHmmUyr47LHtWndWcqyyqeY4bgBpx/hFzo4aToL5QZpyMHwmcq6qLhfEVV1vlAibs1tMB1nhcHFqyT8dBrQ67PCWhCAm1xsgPTCgDbAzrcZqmoafL05gKmLokO3imkwJ+MoIzuPLdks1TyxnPD+sgJvTMl11LIeHQ3jE3jCt1pTEbjWdT/YP+PkY2twWqB/Ygrjji5T/Jobr6A4hBTymFW0MQ76xMqtBY9c=
   organization: labs-playground
-  space: Dave Goddard
   on:
     repo: dgodd/concourse-summary
