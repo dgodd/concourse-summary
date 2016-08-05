@@ -28,21 +28,6 @@
          outline-offset: 0;
        }
     </style>
-    <script src="https://cdn.rawgit.com/github/fetch/master/fetch.js"></script>
-    <script>
-      setInterval(function() {
-        fetch(location.pathname, {credentials: 'same-origin'}).then(function(response) {
-          return response.text()
-        }).then(function(txt) {
-          var doc = document.implementation.createHTMLDocument("example")
-          doc.documentElement.innerHTML = txt
-          document.head.innerHTML=doc.head.innerHTML
-          document.body.innerHTML=doc.body.innerHTML
-        }).catch(function(reason) {
-          document.body.innerHTML="<h1>Error - " + Date() + "</h1><p>" + reason + "</p>"
-        })
-      }, 30000)
-    </script>
   </head>
   <body>
     <div class="time"><%= Time.now %></div>
@@ -54,5 +39,29 @@
     </a>
     <% end %>
 
+    <script>
+      var onerror = function() {
+        document.body.innerHTML="<h1>Error - " + Date() + "</h1>"
+      };
+      var onsuccess = function(request) {
+          var doc = document.implementation.createHTMLDocument("example")
+          doc.documentElement.innerHTML = request.response;
+          document.head.innerHTML=doc.head.innerHTML
+          document.body.innerHTML=doc.body.innerHTML
+};
+    setInterval(function() {
+      var request = new XMLHttpRequest();
+      request.open('GET', location.pathname, true);
+      request.onload = function() {
+        if (request.status >= 200 && request.status < 400) {
+          onsuccess(request)
+        } else {
+          onerror();
+        }
+      };
+      request.onerror = onerror;
+      request.send();
+    }, 30000)
+    </script>
   </body>
 </html>
