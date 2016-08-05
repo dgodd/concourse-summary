@@ -7,20 +7,19 @@
     <link rel="icon" type="image/png" href="https://buildpacks.ci.cf-app.com/public/favicons/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/png" href="https://buildpacks.ci.cf-app.com/public/favicons/favicon-16x16.png" sizes="16x16">
     <style>
-      body { margin:1em; padding:0; font-family: sans-serif; font-size: 20px; line-height: 1.6em; }
+      body { margin:0; padding:0; font-family: monospace, sans-serif; font-size: 20px; line-height: 1.6em; text-align:center; background: #263748; color: #E6E7E8; }
+      a { color: #E6E7E8; }
     </style>
   </head>
   <body>
     <h1>Concourse Summary</h1>
     <p>Use the URL path to show a summary, eg, `/hosts/[HOST NAME]`</p>
 
-    <ul>
     <% hosts.each do |host| %>
-    <li><a href="/host/<%= host %>">
+    <div><a href="/host/<%= host %>">
       <%= host %>
-    </a></li>
+    </a></div>
     <% end %>
-    </ul>
 
   </body>
 </html>
