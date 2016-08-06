@@ -11,7 +11,10 @@ get "/host/:host" do |env|
   host = env.params.url["host"]
   username = env.store["credentials_username"]?
   password = env.store["credentials_password"]?
-  statuses = MyData.get_data(host, username, password)
+  client = HTTP::Client.new(host, tls: true)
+  client.basic_auth(username, password)
+
+  statuses = MyData.get_data(client)
   p statuses
   render "views/host.ecr", "views/layout.ecr"
 end

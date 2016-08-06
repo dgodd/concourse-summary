@@ -26,13 +26,11 @@ class MyData
     (@statuses[status].to_f / @statuses.values.sum * 100).floor.to_i
   end
 
-  def self.get_data(host, username, password)
+  def self.get_data(client : HTTP::Client)
     hash = Hash(Tuple(String, String | Nil), MyData).new do |_, key|
       pipeline, group = key
       MyData.new(pipeline, group)
     end
-    client = HTTP::Client.new(host, tls: true)
-    client.basic_auth(username, password)
 
     Pipeline.all(client).each do |pipeline|
       puts pipeline.name
