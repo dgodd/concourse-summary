@@ -4,7 +4,10 @@ require "kemal"
 
 require "./concourse-summary/*"
 
+REFRESH_INTERVAL = (ENV["REFRESH_INTERVAL"]? || 30).to_i
+
 get "/host/:host" do |env|
+  refresh_interval = REFRESH_INTERVAL
   host = env.params.url["host"]
   username = env.store["credentials_username"]?
   password = env.store["credentials_password"]?

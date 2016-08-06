@@ -30,7 +30,7 @@
     </style>
   </head>
   <body>
-    <div class="time"><%= Time.now %></div>
+    <div class="time"><%= Time.now %> (<span id="countdown"><%= refresh_interval %></span>)</div>
 
     <% statuses.each do |data| %>
     <a href="https://<%= host %><%= data.href %>" target="_blank" class="outer<%= data.running ? " running" : "" %>">
@@ -40,15 +40,15 @@
     <% end %>
 
     <script>
-      var onerror = function() {
-        document.body.innerHTML="<h1>Error - " + Date() + "</h1>"
-      };
-      var onsuccess = function(request) {
-          var doc = document.implementation.createHTMLDocument("example")
-          doc.documentElement.innerHTML = request.response;
-          document.head.innerHTML=doc.head.innerHTML
-          document.body.innerHTML=doc.body.innerHTML
-};
+    var onerror = function() {
+      document.body.innerHTML="<h1>Error - " + Date() + "</h1><div>(<span id='countdown'><%= refresh_interval %></span>)</div>";
+    };
+    var onsuccess = function(request) {
+      var doc = document.implementation.createHTMLDocument("example")
+      doc.documentElement.innerHTML = request.response;
+      document.head.innerHTML=doc.head.innerHTML
+      document.body.innerHTML=doc.body.innerHTML
+    };
     setInterval(function() {
       var request = new XMLHttpRequest();
       request.open('GET', location.pathname, true);
@@ -61,7 +61,14 @@
       };
       request.onerror = onerror;
       request.send();
-    }, 30000)
+    }, <%= refresh_interval %> * 1000)
+    setInterval(function() {
+      var el = document.getElementById('countdown');
+      if(el) {
+        var counter = parseInt(el.innerText, 10);
+        el.innerText = counter - 1;
+      }
+    }, 1000)
     </script>
   </body>
 </html>
