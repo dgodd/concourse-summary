@@ -13,12 +13,12 @@ get "/host/:host" do |env|
   password = env.store["credentials_password"]?
   statuses = MyData.get_data(host, username, password)
   p statuses
-  render "views/host.ecr"
+  render "views/host.ecr", "views/layout.ecr"
 end
 
 get "/" do |env|
   hosts = (ENV["HOSTS"]? || "").split(/\s+/)
-  render "views/index.ecr"
+  render "views/index.ecr", "views/layout.ecr"
 end
 
 Kemal.config.add_handler ExposeUnauthorizedHandler.new
