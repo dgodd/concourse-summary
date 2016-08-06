@@ -19,9 +19,4 @@ class Job
       build.status
     end
   end
-
-  def self.all(client, pipeline : String)
-    response = client.get("/api/v1/pipelines/#{pipeline}/jobs")
-    Array(Job).from_json(response.body) rescue [] of Job
-  end
 end

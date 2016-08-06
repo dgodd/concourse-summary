@@ -14,7 +14,10 @@ description: |
 
 license: MIT
 
-# development_dependencies:
+development_dependencies:
+  mocks:
+    github: waterlink/mocks.cr
+
 #   webmock:
 #     github: manastech/webmock
 

@@ -26,7 +26,7 @@ class MyData
     (@statuses[status].to_f / @statuses.values.sum * 100).floor.to_i
   end
 
-  def self.get_data(client : HTTP::Client)
+  def self.get_data(client, Pipeline, Job)
     hash = Hash(Tuple(String, String | Nil), MyData).new do |_, key|
       pipeline, group = key
       MyData.new(pipeline, group)
