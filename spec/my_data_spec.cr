@@ -16,13 +16,23 @@ describe "MyData" do
   describe "#percent" do
     it "is 0 by default" do
       data = MyData.new("", nil)
-      data.percent.should eq 0
+      data.percent("succeeded").should eq 0
     end
 
     it "is 100 if all succeeded" do
       data = MyData.new("", nil)
       data.inc("succeeded")
-      data.percent.should eq 100
+      data.percent("pending").should eq 0
+      data.percent("succeeded").should eq 100
+    end
+
+    it "is 2/3 if all some succeeded" do
+      data = MyData.new("", nil)
+      data.inc("failed")
+      data.inc("succeeded")
+      data.inc("succeeded")
+      data.percent("failed").should eq 33
+      data.percent("succeeded").should eq 66
     end
   end
 end

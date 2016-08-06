@@ -9,10 +9,8 @@ class MyData
   def initialize(@pipeline, @group)
   end
 
-  def inc(status : String | Nil)
-    status.try do |status|
-      @statuses[status] += 1
-    end
+  def inc(status : String)
+    @statuses[status] += 1
   end
 
   def labels
@@ -23,9 +21,9 @@ class MyData
     "/pipelines/#{@pipeline}" + (@group ? "?groups=#{@group}" : "")
   end
 
-  def percent
+  def percent(status)
     return 0 if @statuses.size == 0
-    (@statuses["succeeded"].to_f / @statuses.values.sum * 100).round.to_i
+    (@statuses[status].to_f / @statuses.values.sum * 100).floor.to_i
   end
 
   def self.get_data(host, username, password)
@@ -42,7 +40,7 @@ class MyData
         key = {pipeline.name, job.group}
         data = hash[key]
         data.running ||= job.running
-        data.inc(job.status)
+        data.inc(job.status || "pending")
         hash[key] = data
       end
     end
