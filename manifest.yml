@@ -1,7 +1,7 @@
 ---
 applications:
-  - name: concourse-summary-crystal
+  - name: concourse-summary-rust
     memory: 256M
-    buildpack: https://github.com/crystal-lang/heroku-buildpack-crystal.git
+    buildpack: https://github.com/jchesterpivotal/rust-buildpack.git
     env:
-      HOSTS: appdog.ci.cf-app.com buildpacks.ci.cf-app.com diego.ci.cf-app.com
+      HOSTS: ci.concourse.ci appdog.ci.cf-app.com buildpacks.ci.cf-app.com diego.ci.cf-app.com capi.ci.cf-app.com<Paste>

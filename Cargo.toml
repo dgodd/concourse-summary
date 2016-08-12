@@ -1,0 +1,12 @@
+[package]
+name = "concourse-summary"
+version = "0.3.0"
+authors = ["Dave Goddard <dave@goddard.id.au"]
+
+[dependencies]
+hyper = "*"
+rustc-serialize = "*"
+url = "*"
+nickel = "*"
+regex = "*"
+
