@@ -34,5 +34,21 @@ describe "MyData" do
       data.percent("failed").should eq 33
       data.percent("succeeded").should eq 66
     end
+
+    it "handles ????" do
+      hash = Hash(Tuple(String, String | Nil), MyData).new do |_, key|
+        pipeline, group = key
+        MyData.new(pipeline, group)
+      end
+      jobs = Array(Job).from_json(open("./jobs_single_green.json"))
+      jobs.each do |job|
+        key = {pipeline.name, job.group}
+        data = hash[key]
+        data.running ||= job.running
+        data.inc(job.status || "pending")
+        hash[key] = data
+      end
+      hash.should == "fred"
+    end
   end
 end
