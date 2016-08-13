@@ -37,11 +37,13 @@ class MyData
     Pipeline.all(client).each do |pipeline|
       puts pipeline.name
       Job.all(client, pipeline.name).each do |job|
-        key = {pipeline.name, job.group}
-        data = hash[key]
-        data.running ||= job.running
-        data.inc(job.status || "pending")
-        hash[key] = data
+        (job.group ? job.groups : [nil]).each do |group|
+          key = {pipeline.name, group}
+          data = hash[key]
+          data.running ||= job.running
+          data.inc(job.status || "pending")
+          hash[key] = data
+        end
       end
     end
     hash.values
