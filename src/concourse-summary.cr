@@ -11,7 +11,7 @@ get "/host/:host" do |env|
   host = env.params.url["host"]
   username = env.store["credentials_username"]?
   password = env.store["credentials_password"]?
-  statuses = MyData.get_data(host, username, password)
+  statuses = MyData.statuses(MyData.get_data(host, username, password))
   p statuses
   render "views/host.ecr", "views/layout.ecr"
 end

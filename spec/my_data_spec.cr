@@ -1,5 +1,8 @@
 require "spec"
+require "file"
 require "../src/concourse-summary/my_data"
+require "../src/concourse-summary/pipeline"
+require "../src/concourse-summary/job"
 
 describe "MyData" do
   describe "#label" do
@@ -33,6 +36,37 @@ describe "MyData" do
       data.inc("succeeded")
       data.percent("failed").should eq 33
       data.percent("succeeded").should eq 66
+    end
+  end
+
+  describe ".statuses" do
+    it "handles nil group" do
+      job = Job.from_json("{\"groups\":[], \"name\":\"\", \"next_build\":null, \"finished_build\":null}")
+      statuses = MyData.statuses([ {"pipeline", job} ])
+
+      statuses.size.should eq 1
+      statuses.first.labels.should eq ["pipeline"]
+      statuses.first.running.should be_false
+      statuses.first.percent("pending").should eq 100.0
+    end
+
+    it "handles single group" do
+      job = Job.from_json("{\"groups\":[\"group\"], \"name\":\"\", \"next_build\":null, \"finished_build\":null}")
+      statuses = MyData.statuses([ {"pipeline", job} ])
+
+      statuses.size.should eq 1
+      statuses.first.labels.should eq ["pipeline", "group"]
+      statuses.first.running.should be_false
+      statuses.first.percent("pending").should eq 100.0
+    end
+
+    it "handles multiple groups" do
+      job = Job.from_json("{\"groups\":[\"group1\",\"group2\"], \"name\":\"\", \"next_build\":null, \"finished_build\":null}")
+      statuses = MyData.statuses([ {"pipeline", job} ])
+
+      statuses.size.should eq 2
+      statuses[0].labels.should eq ["pipeline", "group1"]
+      statuses[1].labels.should eq ["pipeline", "group2"]
     end
   end
 end

@@ -1,3 +1,6 @@
+require "json"
+require "./status"
+
 class Job
   JSON.mapping(
     name: String,

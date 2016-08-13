@@ -27,23 +27,28 @@ class MyData
   end
 
   def self.get_data(host, username, password)
+    client = HTTP::Client.new(host, tls: true)
+    client.basic_auth(username, password)
+
+    Pipeline.all(client).map do |pipeline|
+      Job.all(client, pipeline.name).map do |job|
+        {pipeline.name, job}
+      end
+    end.flatten
+  end
+
+  def self.statuses(data)
     hash = Hash(Tuple(String, String | Nil), MyData).new do |_, key|
       pipeline, group = key
       MyData.new(pipeline, group)
     end
-    client = HTTP::Client.new(host, tls: true)
-    client.basic_auth(username, password)
-
-    Pipeline.all(client).each do |pipeline|
-      puts pipeline.name
-      Job.all(client, pipeline.name).each do |job|
-        (job.group ? job.groups : [nil]).each do |group|
-          key = {pipeline.name, group}
-          data = hash[key]
-          data.running ||= job.running
-          data.inc(job.status || "pending")
-          hash[key] = data
-        end
+    data.each do |pipeline, job|
+      (job.group ? job.groups : [nil]).each do |group|
+        key = {pipeline, group}
+        data = hash[key]
+        data.running ||= job.running
+        data.inc(job.status || "pending")
+        hash[key] = data
       end
     end
     hash.values
