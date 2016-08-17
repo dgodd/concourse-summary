@@ -1,5 +1,8 @@
 class MyData
   @pipeline : String?
+  @pipeline_url : String?
+  getter pipeline_url
+  setter pipeline_url
   @group : String?
   @running = false
   getter running
@@ -21,7 +24,7 @@ class MyData
   end
 
   def href
-    "/pipelines/#{@pipeline}" + (@group ? "?groups=#{@group}" : "")
+    (@pipeline_url ? "#{@pipeline_url}" : "/pipelines/#{@pipeline}") + (@group ? "?groups=#{@group}" : "")
   end
 
   def percent(status)
@@ -34,7 +37,7 @@ class MyData
     client.basic_auth(username, password)
 
     Pipeline.all(client).map do |pipeline|
-      Job.all(client, pipeline.name).map do |job|
+      Job.all(client, pipeline.url).map do |job|
         {pipeline, job}
       end
     end.flatten
@@ -50,6 +53,7 @@ class MyData
         key = {pipeline.name, group}
         data = hash[key]
         data.paused = pipeline.paused
+        data.pipeline_url = pipeline.url
         data.running ||= job.running
         data.inc(job.status || "pending")
         hash[key] = data

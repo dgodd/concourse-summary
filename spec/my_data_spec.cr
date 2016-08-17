@@ -42,7 +42,7 @@ describe "MyData" do
   describe ".statuses" do
     it "handles nil group" do
       job = Job.from_json("{\"groups\":[], \"name\":\"\", \"next_build\":null, \"finished_build\":null}")
-      pipeline = Pipeline.from_json("{\"name\":\"pipeline\",\"paused\":false}")
+      pipeline = Pipeline.from_json("{\"name\":\"pipeline\",\"url\":\"\",\"paused\":false}")
       statuses = MyData.statuses([ {pipeline, job} ])
 
       statuses.size.should eq 1
@@ -54,7 +54,7 @@ describe "MyData" do
 
     it "handles single group" do
       job = Job.from_json("{\"groups\":[\"group\"], \"name\":\"\", \"next_build\":null, \"finished_build\":null}")
-      pipeline = Pipeline.from_json("{\"name\":\"pipeline\",\"paused\":false}")
+      pipeline = Pipeline.from_json("{\"name\":\"pipeline\",\"url\":\"\",\"paused\":false}")
       statuses = MyData.statuses([ {pipeline, job} ])
 
       statuses.size.should eq 1
@@ -66,7 +66,7 @@ describe "MyData" do
 
     it "handles multiple groups" do
       job = Job.from_json("{\"groups\":[\"group1\",\"group2\"], \"name\":\"\", \"next_build\":null, \"finished_build\":null}")
-      pipeline = Pipeline.from_json("{\"name\":\"pipeline\",\"paused\":false}")
+      pipeline = Pipeline.from_json("{\"name\":\"pipeline\",\"url\":\"\",\"paused\":false}")
       statuses = MyData.statuses([ {pipeline, job} ])
 
       statuses.size.should eq 2
@@ -78,7 +78,7 @@ describe "MyData" do
 
     it "handles paused" do
       job = Job.from_json("{\"groups\":[], \"name\":\"\", \"next_build\":null, \"finished_build\":null}")
-      pipeline = Pipeline.from_json("{\"name\":\"pipeline\",\"paused\":true}")
+      pipeline = Pipeline.from_json("{\"name\":\"pipeline\",\"url\":\"\",\"paused\":true}")
       statuses = MyData.statuses([ {pipeline, job} ])
 
       statuses.size.should eq 1

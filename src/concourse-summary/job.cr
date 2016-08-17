@@ -23,8 +23,8 @@ class Job
     end
   end
 
-  def self.all(client, pipeline : String)
-    response = client.get("/api/v1/pipelines/#{pipeline}/jobs")
+  def self.all(client, job_url : String)
+    response = client.get("/api/v1#{job_url}/jobs")
     Array(Job).from_json(response.body) rescue [] of Job
   end
 end

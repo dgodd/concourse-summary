@@ -3,6 +3,7 @@ require "json"
 class Pipeline
   JSON.mapping(
     name: String,
+    url: String,
     paused: Bool
   )
 
