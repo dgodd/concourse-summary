@@ -8,6 +8,7 @@
     <div class="failed" style="width: <%= data.percent("failed") %>%;"></div>
     <div class="succeeded" style="width: <%= data.percent("succeeded") %>%;"></div>
   </div>
+  <% if data.paused %><div class="paused"></div><% end %>
   <div class="inner"><%= data.labels.join("<br>") %></div>
 </a>
 <% end %>

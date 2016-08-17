@@ -42,31 +42,47 @@ describe "MyData" do
   describe ".statuses" do
     it "handles nil group" do
       job = Job.from_json("{\"groups\":[], \"name\":\"\", \"next_build\":null, \"finished_build\":null}")
-      statuses = MyData.statuses([ {"pipeline", job} ])
+      pipeline = Pipeline.from_json("{\"name\":\"pipeline\",\"paused\":false}")
+      statuses = MyData.statuses([ {pipeline, job} ])
 
       statuses.size.should eq 1
       statuses.first.labels.should eq ["pipeline"]
+      statuses.first.paused.should be_false
       statuses.first.running.should be_false
       statuses.first.percent("pending").should eq 100.0
     end
 
     it "handles single group" do
       job = Job.from_json("{\"groups\":[\"group\"], \"name\":\"\", \"next_build\":null, \"finished_build\":null}")
-      statuses = MyData.statuses([ {"pipeline", job} ])
+      pipeline = Pipeline.from_json("{\"name\":\"pipeline\",\"paused\":false}")
+      statuses = MyData.statuses([ {pipeline, job} ])
 
       statuses.size.should eq 1
       statuses.first.labels.should eq ["pipeline", "group"]
+      statuses.first.paused.should be_false
       statuses.first.running.should be_false
       statuses.first.percent("pending").should eq 100.0
     end
 
     it "handles multiple groups" do
       job = Job.from_json("{\"groups\":[\"group1\",\"group2\"], \"name\":\"\", \"next_build\":null, \"finished_build\":null}")
-      statuses = MyData.statuses([ {"pipeline", job} ])
+      pipeline = Pipeline.from_json("{\"name\":\"pipeline\",\"paused\":false}")
+      statuses = MyData.statuses([ {pipeline, job} ])
 
       statuses.size.should eq 2
       statuses[0].labels.should eq ["pipeline", "group1"]
+      statuses[0].paused.should be_false
       statuses[1].labels.should eq ["pipeline", "group2"]
+      statuses[1].paused.should be_false
+    end
+
+    it "handles paused" do
+      job = Job.from_json("{\"groups\":[], \"name\":\"\", \"next_build\":null, \"finished_build\":null}")
+      pipeline = Pipeline.from_json("{\"name\":\"pipeline\",\"paused\":true}")
+      statuses = MyData.statuses([ {pipeline, job} ])
+
+      statuses.size.should eq 1
+      statuses.first.paused.should be_true
     end
   end
 end

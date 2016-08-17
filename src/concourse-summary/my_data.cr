@@ -4,6 +4,9 @@ class MyData
   @running = false
   getter running
   setter running
+  @paused = false
+  getter paused
+  setter paused
   @statuses = Hash(String, Int32).new(0)
 
   def initialize(@pipeline, @group)
@@ -32,20 +35,21 @@ class MyData
 
     Pipeline.all(client).map do |pipeline|
       Job.all(client, pipeline.name).map do |job|
-        {pipeline.name, job}
+        {pipeline, job}
       end
     end.flatten
   end
 
   def self.statuses(data)
     hash = Hash(Tuple(String, String | Nil), MyData).new do |_, key|
-      pipeline, group = key
-      MyData.new(pipeline, group)
+      pipeline_name, group = key
+      MyData.new(pipeline_name, group)
     end
     data.each do |pipeline, job|
       (job.group ? job.groups : [nil]).each do |group|
-        key = {pipeline, group}
+        key = {pipeline.name, group}
         data = hash[key]
+        data.paused = pipeline.paused
         data.running ||= job.running
         data.inc(job.status || "pending")
         hash[key] = data
