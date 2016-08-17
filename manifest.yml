@@ -4,4 +4,4 @@ applications:
     memory: 256M
     buildpack: https://github.com/crystal-lang/heroku-buildpack-crystal.git
     env:
-      HOSTS: appdog.ci.cf-app.com buildpacks.ci.cf-app.com diego.ci.cf-app.com
+      HOSTS: appdog.ci.cf-app.com buildpacks.ci.cf-app.com diego.ci.cf-app.com capi.ci.cf-app.com
