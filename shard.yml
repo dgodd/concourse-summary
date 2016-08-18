@@ -10,7 +10,7 @@ authors:
   - Dave Goddard <dave@goddard.id.au>
 
 description: |
-  Short description of concourse-summary
+  Show a quick overview of all of your concourse.ci pipelines and groups
 
 license: MIT
 
