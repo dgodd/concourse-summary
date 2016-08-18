@@ -4,13 +4,14 @@ require "./status"
 class Job
   JSON.mapping(
     name: String,
-    groups: Array(String),
-    next_build: Status | Nil,
-    finished_build: Status | Nil,
+    groups: Array(String?),
+    next_build: Status?,
+    finished_build: Status?,
   )
 
-  def group
-    groups.first?
+  def groups
+    return [nil] if @groups.size == 0
+    @groups
   end
 
   def running

@@ -49,7 +49,7 @@ class MyData
       MyData.new(pipeline_name, group)
     end
     data.each do |pipeline, job|
-      (job.group ? job.groups : [nil]).each do |group|
+      job.groups.each do |group|
         key = {pipeline.name, group}
         data = hash[key]
         data.paused = pipeline.paused
