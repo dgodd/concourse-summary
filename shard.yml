@@ -1,5 +1,5 @@
 name: concourse-summary
-version: 0.1.0
+version: 0.2.0
 
 dependencies:
   kemal:
@@ -14,7 +14,7 @@ description: |
 
 license: MIT
 
-# development_dependencies:
-#   webmock:
-#     github: manastech/webmock
-
+development_dependencies:
+  mocks:
+    github: waterlink/mocks.cr
+    version: ~> 0.9

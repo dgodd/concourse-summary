@@ -1,4 +1,5 @@
 require "json"
+require "./exceptions"
 
 class Pipeline
   JSON.mapping(

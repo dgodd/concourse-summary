@@ -2,13 +2,21 @@ version: 1.0
 shards:
   kemal:
     github: sdogruyol/kemal
-    commit: e5a9035a6111fdcfa781e3b8695a0878753cabee
+    commit: 849eda06c8686676e68f39569f1deb5ab193917c
 
   kilt:
     github: jeromegn/kilt
     version: 0.3.3
 
+  mocks:
+    github: waterlink/mocks.cr
+    version: 0.9.2
+
   radix:
     github: luislavena/radix
     version: 0.3.0
+
+  singleton:
+    github: waterlink/singleton.cr
+    version: 0.1.0
 
