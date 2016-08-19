@@ -7,4 +7,13 @@
 </a></div>
 <% end %>
 
+<% if groups && groups.size > 0 %>
+  <div style="margin-top:2em">Groups</div>
+  <% groups.each do |group| %>
+    <div><a href="/group/<%= group %>">
+      <%= group %>
+    </a></div>
+  <% end %>
+<% end %>
+
 <p>This project can be found on <a href="https://github.com/dgodd/concourse-summary" target="_blank">Github</a></p>

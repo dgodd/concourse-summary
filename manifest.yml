@@ -5,3 +5,4 @@ applications:
     buildpack: https://github.com/crystal-lang/heroku-buildpack-crystal.git
     env:
       HOSTS: ci.concourse.ci appdog.ci.cf-app.com buildpacks.ci.cf-app.com diego.ci.cf-app.com capi.ci.cf-app.com
+      CS_GROUPS: '{"test":{"buildpacks.ci.cf-app.com":{"binary-builder":["automated-builds","manual-builds"],"brats":null},"diego.ci.cf-app.com":{"greenhouse":null},"capi.ci.cf-app.com":null}}'

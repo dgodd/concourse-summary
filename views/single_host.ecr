@@ -1,0 +1,12 @@
+<% statuses.each do |data| %>
+<a href="https://<%= host %><%= data.href %>" target="_blank" class="outer<%= data.running ? " running" : "" %>">
+  <div class="status">
+    <div class="aborted" style="width: <%= data.percent("aborted") %>%;"></div>
+    <div class="errored" style="width: <%= data.percent("errored") %>%;"></div>
+    <div class="failed" style="width: <%= data.percent("failed") %>%;"></div>
+    <div class="succeeded" style="width: <%= data.percent("succeeded") %>%;"></div>
+  </div>
+  <% if data.paused %><div class="paused"></div><% end %>
+  <div class="inner"><%= data.labels.join("<br>") %></div>
+</a>
+<% end %>

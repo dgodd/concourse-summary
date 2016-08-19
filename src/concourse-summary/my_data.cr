@@ -1,3 +1,5 @@
+require "http/client"
+
 class MyData
   @pipeline : String?
   @pipeline_url : String?
@@ -32,18 +34,35 @@ class MyData
     (@statuses[status].to_f / @statuses.values.sum * 100).floor.to_i
   end
 
-  def self.get_data(host, username, password)
+  def self.get_data(host, username, password, pipelines = nil)
     client = HTTP::Client.new(host, tls: true)
     client.basic_auth(username, password)
 
     Pipeline.all(client).map do |pipeline|
+      next if pipelines && !pipelines.has_key?(pipeline.name)
       Job.all(client, pipeline.url).map do |job|
         {pipeline, job}
       end
-    end.flatten
+    end.flatten.compact
   end
 
-  def self.remove_group_info(data)
+  def self.filter_groups(data, pipelines)
+    return data unless pipelines
+    single_nil_array = (Array(String | Nil).new << nil)
+    data.select do |pipeline, job|
+      groups = pipelines[pipeline.name]
+      if groups == nil || job.groups.size == 0 || job.groups == single_nil_array
+        true
+      elsif typeof(job.groups) == Array(Nil)
+        true
+      else
+        job.groups = (job.groups & groups).as(Array(String | Nil))
+        job.groups.size > 0 && job.groups != single_nil_array
+      end
+    end
+  end
+
+  def self.remove_group_info(data : Array(Tuple(Pipeline, Job)))
     data.each do |pipeline, job|
       job.clear_groups
     end
@@ -77,5 +96,11 @@ class MyData
       object.field "paused", @paused
       object.field "statuses", @statuses
     end
+  end
+end
+
+class Array[String?]
+  def &(other : Nil)
+    Array(String?).new # Should be [nil] i think
   end
 end
