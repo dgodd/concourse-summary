@@ -85,4 +85,16 @@ describe "MyData" do
       statuses.first.paused.should be_true
     end
   end
+
+  describe ".remove_group_info" do
+    it "clears group info from from pipeline/job tuple arrays" do
+      job = Job.from_json(%({"groups":["g1","g2"], "name":"", "next_build":null, "finished_build":null}))
+      pipeline = Pipeline.from_json(%({"name":"pipeline","url":"","paused":true}))
+      data = [ {pipeline, job} ]
+      data[0][1].groups.should eq ["g1","g2"]
+
+      data = MyData.remove_group_info(data)
+      data[0][1].groups.should eq [nil]
+    end
+  end
 end

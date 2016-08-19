@@ -11,7 +11,12 @@ get "/host/:host" do |env|
   host = env.params.url["host"]
   username = env.store["credentials_username"]?
   password = env.store["credentials_password"]?
-  statuses = MyData.statuses(MyData.get_data(host, username, password))
+  ignore_groups = env.params.query.has_key?("ignore_groups")
+  data = MyData.get_data(host, username, password)
+  if (ignore_groups)
+    data = MyData.remove_group_info(data)
+  end
+  statuses = MyData.statuses(data)
   render "views/host.ecr", "views/layout.ecr"
 end
 

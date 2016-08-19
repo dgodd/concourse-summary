@@ -14,6 +14,10 @@ class Job
     @groups
   end
 
+  def clear_groups
+    @groups = [] of String?
+  end
+
   def running
     !!next_build
   end

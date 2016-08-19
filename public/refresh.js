@@ -10,7 +10,7 @@ var onsuccess = function(request) {
 };
 setInterval(function() {
   var request = new XMLHttpRequest();
-  request.open('GET', location.pathname, true);
+  request.open('GET', location.href, true);
   request.onload = function() {
     if (request.status >= 200 && request.status < 400) {
       onsuccess(request)

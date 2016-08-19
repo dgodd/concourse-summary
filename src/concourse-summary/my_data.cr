@@ -43,6 +43,12 @@ class MyData
     end.flatten
   end
 
+  def self.remove_group_info(data)
+    data.each do |pipeline, job|
+      job.clear_groups
+    end
+  end
+
   def self.statuses(data)
     hash = Hash(Tuple(String, String | Nil), MyData).new do |_, key|
       pipeline_name, group = key
