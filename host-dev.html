@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Concourse Summary</title>
+    <link rel="stylesheet" href="/public/styles.css" type=""><!-- Put your styles in folder with index.html -->
+  </head>
+  <body>
+    <div style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #9A9A9A; font-family: &#39;Source Sans Pro&#39;;">
+      <div style="font-size: 3em;">Building your project!</div>
+      <img src="/_reactor/waiting.gif" alt="">
+      <div style="font-size: 1em">With new projects, I need a bunch of extra time to download packages.</div>
+    </div>
+
+    <!-- Put the name of your app here (my sources place in `src` forder) -->
+    <script type="text/javascript" src="/_compile/host.elm"></script>
+
+    <!-- Removes splash and starts elm app. -->
+    <script type="text/javascript">
+      while (document.body.firstChild) {
+        document.body.removeChild(document.body.firstChild);
+      }
+      runElmProgram();
+    </script>
+  </body>
+</html>
