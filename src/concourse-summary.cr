@@ -17,7 +17,8 @@ get "/host/:host" do |env|
     data = MyData.remove_group_info(data)
   end
   statuses = MyData.statuses(data)
-  if env.request.headers["Accept"] == "application/json"
+  if env.request.headers["Accept"] == "application/json" || true
+    env.response.headers["Access-Control-Allow-Origin"] = "*"
     env.response.content_type = "application/json"
     statuses.to_json
   else
