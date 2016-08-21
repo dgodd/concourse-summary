@@ -17,7 +17,17 @@ get "/host/:host" do |env|
     data = MyData.remove_group_info(data)
   end
   statuses = MyData.statuses(data)
-  render "views/host.ecr", "views/layout.ecr"
+  if env.request.headers["Accept"] == "application/json"
+    env.response.content_type = "application/json"
+    statuses.to_json
+  else
+    render "views/host.ecr", "views/layout.ecr"
+  end
+end
+
+get "/env" do |env|
+  env.response.content_type = "application/json"
+  env.request.headers.inspect
 end
 
 get "/" do |env|
