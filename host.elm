@@ -4,14 +4,16 @@ import Html.Attributes exposing (..)
 import Html.Events exposing (..)
 import Html.Lazy exposing (lazy, lazy2)
 import Http
-import Json.Decode as Json exposing ((:=), string, bool, object4)
+import Json.Decode as Json exposing ((:=), int, string, bool, dict)
 import Task
-
+import Dict
+import Maybe exposing (withDefault)
+import Debug exposing (log)
 
 
 main =
   App.program
-    { init = init "capi.ci.cf-app.com"
+    { init = init "buildpacks.ci.cf-app.com"
     , view = view
     , update = update
     , subscriptions = subscriptions
@@ -23,20 +25,22 @@ main =
 
 type alias Status =
   { pipeline : String
-  , group : String
+  , group : Maybe String
   , paused : Bool
   , running : Bool
+  , statuses : Dict.Dict String Int
   }
 
 type alias Model =
   { host : String
+  , error : String
   , statuses : (List Status)
   }
 
 
 init : String -> (Model, Cmd Msg)
 init host =
-  ( Model host []
+  ( Model host "" []
   , getHostStatuses host
   )
 
@@ -58,27 +62,48 @@ update msg model =
       (model, getHostStatuses model.host)
 
     FetchSucceed statuses ->
-      (Model model.host statuses, Cmd.none)
+        let
+          mkPercent : Status -> Status
+          mkPercent = (\status ->
+            let
+              total = log "total" (toFloat (List.sum (Dict.values status.statuses)))
+              newStatuses = log "newStatuses" (Dict.map (\_ v -> floor ((toFloat v) * 100.0 / total)) status.statuses)
+              newStatus = {status | statuses = newStatuses}
+            in
+              newStatus)
+          statuses2 = (log "statuses" (List.map mkPercent statuses))
+      in
+        (Model model.host "" statuses2, Cmd.none)
 
-    FetchFail _ ->
-      (model, Cmd.none)
+    FetchFail x ->
+      (Model model.host (toString x) [], Cmd.none)
 
 
 
 -- VIEW
 
+
 viewStatus : Status -> Html Msg
 viewStatus status =
-  div []
-    [ h3 [] [text status.pipeline] ]
+  let
+    single name =
+      div [ class name, style [("width", toString (withDefault 0 (Dict.get name status.statuses)) ++ "%")] ] []
+  in
+    a [ href "https://<%= host %><%= data.href %>", target "_blank", class "outer" ]
+      [ div [ class "status" ] <| List.map single ["aborted","errored","failed","succeeded"]
+      , div [ class "inner" ]
+          [ div [] [ text status.pipeline ]
+          , div [] [ text (withDefault "" status.group) ]
+          ]
+      ]
 
 
 view : Model -> Html Msg
 view model =
   div []
-    [ h2 [] [text model.host]
-    , button [ onClick MorePlease ] [ text "More Please!" ]
-    , br [] []
+    [
+      div [ class "time" ] [ text "Concourse Summary" ]
+    , div [ class "error" ] [ text model.error ]
     , div [] <| List.map viewStatus model.statuses
     ]
 
@@ -100,15 +125,16 @@ getHostStatuses : String -> Cmd Msg
 getHostStatuses host =
   let
     url =
-      "http://localhost:3000/host/" ++ host
+      -- "http://localhost:3000/host/" ++ host
+      "/hosta.json"
   in
-    Task.perform FetchFail FetchSucceed (Http.get decodeStatuses url)
+    Task.perform FetchFail FetchSucceed (Http.get decodeStatusList url)
 
-
-decodeStatuses : Json.Decoder (List Status)
-decodeStatuses =
-  Json.list (object4 Status
+decodeStatusList : Json.Decoder (List Status)
+decodeStatusList =
+  Json.list (Json.object5 Status
     ("pipeline" := string)
-    ("group" := string)
+    ("group" := Json.maybe string)
     ("running" := bool)
-    ("paused" := bool))
+    ("paused" := bool)
+    ("statuses" := dict int))
