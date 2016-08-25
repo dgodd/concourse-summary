@@ -4,3 +4,5 @@
 /libs/
 /.crystal/
 /elm-stuff/
+/node_modules/
+/target/
