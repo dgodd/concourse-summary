@@ -4,7 +4,7 @@ const http = require('choo/http')
 const app = choo()
 
 app.model({
-  state: { countdown: 100, title: 'Not quite set yet', statuses: [] },
+  state: { countdown: 0, statuses: [] },
   reducers: {
     update: (data, state) => ({ title: data }),
     decrement: (data, state) => ({ countdown: state.countdown - 1 }),
@@ -27,6 +27,10 @@ app.model({
           if (err) return done(err)
         })
       }, 1000)
+    },
+    (send, done) => {
+      send('fetch', {}, () => {})
+      done();
     },
     (send, done) => {
       setInterval(() => {
