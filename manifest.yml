@@ -5,3 +5,4 @@ applications:
     buildpack: https://github.com/crystal-lang/heroku-buildpack-crystal.git
     env:
       HOSTS: ci.concourse.ci appdog.ci.cf-app.com buildpacks.ci.cf-app.com diego.ci.cf-app.com capi.ci.cf-app.com
+#     PIPELINES: pipeline_name_1 pipeline_name_2 (it will only display the pipeline name apears here or all if you leave it unset)
