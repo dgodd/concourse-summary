@@ -6,17 +6,6 @@ require "./concourse-summary/*"
 
 REFRESH_INTERVAL = (ENV["REFRESH_INTERVAL"]? || 30).to_i
 
-macro json_or_html(json, html)
-  if env.request.headers["Accept"] == "application/json"
-    env.response.headers["Access-Control-Allow-Origin"] = "*"
-    env.response.content_type = "application/json"
-
-    {{json}}
-  else
-    {{html}}
-  end
-end
-
 get "/host/:host" do |env|
   refresh_interval = REFRESH_INTERVAL
   host = env.params.url["host"]
@@ -29,7 +18,7 @@ get "/host/:host" do |env|
   end
   statuses = MyData.statuses(data)
 
-  json_or_html(statuses.to_json, render("views/host.ecr", "views/layout.ecr"))
+  json_or_html(statuses, "host")
 end
 
 get "/env" do |env|
