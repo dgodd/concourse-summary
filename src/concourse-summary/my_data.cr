@@ -32,11 +32,11 @@ class MyData
     (@statuses[status].to_f / @statuses.values.sum * 100).floor.to_i
   end
 
-  def self.get_data(host, username, password)
+  def self.get_data(host, username, password, filters)
     client = HTTP::Client.new(host, tls: true)
     client.basic_auth(username, password)
 
-    Pipeline.all(client).map do |pipeline|
+    Pipeline.all(client, filters).map do |pipeline|
       Job.all(client, pipeline.url).map do |job|
         {pipeline, job}
       end

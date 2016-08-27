@@ -12,7 +12,8 @@ get "/host/:host" do |env|
   username = env.store["credentials_username"]?
   password = env.store["credentials_password"]?
   ignore_groups = env.params.query.has_key?("ignore_groups")
-  data = MyData.get_data(host, username, password)
+  filters = (ENV["PIPELINES"]? || "").split(/\s+/)
+  data = MyData.get_data(host, username, password, filters)
   if (ignore_groups)
     data = MyData.remove_group_info(data)
   end

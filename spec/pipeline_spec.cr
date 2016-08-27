@@ -18,8 +18,16 @@ describe "Pipeline" do
       response = Mocks.double("Response", returns(status_code, 200), returns(body, %([{"name":"fred","url":"","paused":false},{"name":"jane","url":"","paused":false}])))
       client = Mocks.double("Client", returns(get("/api/v1/pipelines"), response))
 
-      pipelines = Pipeline.all(client)
+      pipelines = Pipeline.all(client, [] of String)
       pipelines.map(&.name).should eq ["fred","jane"]
+    end
+
+    it "returns filtered pipelines" do
+      response = Mocks.double("Response", returns(status_code, 200), returns(body, %([{"name":"fred","url":"","paused":false},{"name":"jane","url":"","paused":false}])))
+      client = Mocks.double("Client", returns(get("/api/v1/pipelines"), response))
+
+      pipelines = Pipeline.all(client, ["fred"])
+      pipelines.map(&.name).should eq ["fred"]
     end
 
     it "raises exception if 401 status code is returned" do
@@ -27,7 +35,7 @@ describe "Pipeline" do
       client = Mocks.double("Client", returns(get("/api/v1/pipelines"), response))
 
       expect_raises Unauthorized do
-        Pipeline.all(client)
+        Pipeline.all(client, [] of String)
       end
     end
   end
