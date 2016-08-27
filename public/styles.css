@@ -1,6 +1,8 @@
 body { margin:0; padding:0; font-family: monospace, sans-serif; font-size: 20px; line-height: 1.6em; text-align:center; background: #263748; color: #E6E7E8; }
 a { color: #E6E7E8; }
 .time { padding:0 8px; margin:0 0 16px 0; background: #1A252F; color: #E6E7E8; }
+.time input { background:#1A252F;border:0;color:#E6E7E8; }
+.time input:active { background:#E6E7E8;color:#1A252F; }
 .outer { display:inline-block; width: 200px; height: 120px; color: #E6E7E8; background: #5C6C7D; position: relative; margin: 8px; }
 .status { position: absolute; top:0; bottom: 0; left:0; right:0; white-space:nowrap; overflow:hidden; tex-align:left; }
 .aborted, .errored, .failed, .succeeded { display:inline-block;height:120px;margin:0;padding:0;float:left; }

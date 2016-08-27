@@ -2,21 +2,23 @@ const choo = require('choo')
 const html = require('choo/html')
 const http = require('choo/http')
 const app = choo()
+const refreshInterval = 30;
 
 app.model({
-  state: { countdown: 0, statuses: [] },
+  state: { host: 'ci.concourse.ci', countdown: 0, statuses: [] },
   reducers: {
-    update: (data, state) => ({ title: data }),
+    set_host: (data, state) => {
+      return { host: data, countdown: 0, statuses: [] };
+    },
     decrement: (data, state) => ({ countdown: state.countdown - 1 }),
     receive: (data, state) => {
-      console.log(data)
-      return { statuses: data }
+      return { statuses: data, countdown: refreshInterval }
     }
   },
   effects: {
     fetch: (data, state, send, done) => {
-      http('/hosta.json', (err, res, body) => {
-        send('receive', JSON.parse(body), done)
+      http(`http://localhost:3000/host/${state.host}`, {json:true}, (err, res, body) => {
+        send('receive', body, done)
       })
     }
   },
@@ -37,18 +39,25 @@ app.model({
         send('fetch', {}, (err) => {
           if (err) return done(err)
         })
-      }, 2000)
+      }, refreshInterval * 1000)
     }
   ]
 })
 
-const statusView = (state) => html`
-  <a href="https://ci.concourse.ci/teams/main/pipelines/main?groups=develop" target="_blank" class="outer running">
+const statusPercent = (name, statuses) => {
+  var total = 0;
+  for(var i in statuses) total += statuses[i];
+  const perc = statuses[name] * 100 / total;
+  return html`<div class="${name}" style="width: ${perc}%;"></div>`;
+};
+
+const statusView = (host, state) => html`
+  <a href="http://${host}${state.url}" target="_blank" class="outer${state.running ? ' running' : ''}">
     <div class="status">
-      <div class="aborted" style="width: 7%;"></div>
-      <div class="errored" style="width: 0%;"></div>
-      <div class="failed" style="width: 7%;"></div>
-      <div class="succeeded" style="width: 85%;"></div>
+      ${statusPercent("aborted", state.statuses)}
+      ${statusPercent("errored", state.statuses)}
+      ${statusPercent("failed", state.statuses)}
+      ${statusPercent("succeeded", state.statuses)}
     </div>
     <div class="inner">${state.pipeline}<br>${state.group}</div>
   </a>
@@ -56,17 +65,13 @@ const statusView = (state) => html`
 
 const mainView = (state, prev, send) => html`
   <main>
-    <h1>Title: ${state.title}</h1>
-    <h2>Countdown: ${state.countdown}</h2>
-    <div>${state.statuses.map(status => statusView(status))}</div>
-    <input
-      type="text"
-      oninput=${(e) => send('update', e.target.value)}>
+    <div class="time"><input style="" value="${state.host}" oninput=${(e) => { send('set_host', e.target.value); send('fetch'); }} /> (<span id="countdown">${state.countdown}</span>)<a href="https://github.com/dgodd/concourse-summary" target="_blank" style="position:absolute;right:0;top:0;"><img src="/public/github.png"></a></div>
+    <div>${state.statuses.map(status => statusView(state.host, status))}</div>
   </main>
 `
 
 app.router((route) => [
-  route('/', mainView)
+  route('/', mainView),
 ])
 
 const tree = app.start()
