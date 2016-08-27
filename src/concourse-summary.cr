@@ -17,7 +17,8 @@ get "/host/:host" do |env|
     data = MyData.remove_group_info(data)
   end
   statuses = MyData.statuses(data)
-  render "views/host.ecr", "views/layout.ecr"
+
+  json_or_html(statuses, "host")
 end
 
 get "/" do |env|

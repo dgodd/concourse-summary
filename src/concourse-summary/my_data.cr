@@ -67,4 +67,15 @@ class MyData
     end
     hash.values
   end
+
+  def to_json(io : IO)
+    io.json_object do |object|
+      object.field "pipeline", @pipeline || nil
+      object.field "group", @group || nil
+      object.field "url", href
+      object.field "running", @running
+      object.field "paused", @paused
+      object.field "statuses", @statuses
+    end
+  end
 end
