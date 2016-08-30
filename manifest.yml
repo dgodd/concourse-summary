@@ -1,0 +1,7 @@
+---
+applications:
+  - name: concourse-summary-golang
+    memory: 256M
+    buildpack: https://github.com/cloudfoundry/go-buildpack.git
+    env:
+      HOSTS: ci.concourse.ci appdog.ci.cf-app.com buildpacks.ci.cf-app.com diego.ci.cf-app.com capi.ci.cf-app.com

@@ -1,2 +1,4 @@
-/.shards/
-/libs/
+/.git/
+/vendor/
+/.envrc
+/.gitignore

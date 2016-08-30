@@ -4,10 +4,12 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
+
+	"encoding/json"
 
 	"github.com/gorilla/mux"
 )
-import "encoding/json"
 
 type Pipeline struct {
 	Name   string
@@ -32,8 +34,8 @@ type Data struct {
 	Statuses map[string]int
 }
 
-func getJson(url string, target interface{}) error {
-	r, err := http.Get(url)
+func getJson(httpClient *http.Client, url string, target interface{}) error {
+	r, err := httpClient.Get(url)
 	if err != nil {
 		return err
 	}
@@ -42,16 +44,28 @@ func getJson(url string, target interface{}) error {
 	return json.NewDecoder(r.Body).Decode(target)
 }
 
+func createHTTPClient() *http.Client {
+	client := &http.Client{
+		Transport: &http.Transport{
+			MaxIdleConnsPerHost: 2,
+		},
+		Timeout: time.Duration(5) * time.Second,
+	}
+
+	return client
+}
+
 func getData(host string) ([]Data, error) {
+	httpClient := createHTTPClient()
 	var pipelines []Pipeline
-	err := getJson(fmt.Sprintf("%s/api/v1/pipelines", host), &pipelines)
+	err := getJson(httpClient, fmt.Sprintf("%s/api/v1/pipelines", host), &pipelines)
 	if err != nil {
 		return []Data{}, err
 	}
 	data := map[string]Data{}
 	for _, pipeline := range pipelines {
 		var jobs []Job
-		err := getJson(fmt.Sprintf("%s/api/v1%s/jobs", host, pipeline.Url), &jobs)
+		err := getJson(httpClient, fmt.Sprintf("%s/api/v1%s/jobs", host, pipeline.Url), &jobs)
 		if err != nil {
 			return []Data{}, err
 		}
@@ -103,6 +117,7 @@ func HostIndex(w http.ResponseWriter, r *http.Request) {
 func main() {
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/host/{host}", HostIndex)
+	fmt.Println("listening on :8080")
 	log.Fatal(http.ListenAndServe(":8080", router))
 
 	// values, err := getData("https://buildpacks.ci.cf-app.com")
