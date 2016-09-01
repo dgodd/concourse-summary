@@ -1,2 +1,0 @@
-class Unauthorized < Exception
-end
