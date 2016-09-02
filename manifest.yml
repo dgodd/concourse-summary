@@ -1,0 +1,5 @@
+---
+applications:
+  - name: concourse-summary-csharp
+    memory: 1G
+    buildpack: https://github.com/cloudfoundry-community/dotnet-core-buildpack.git
