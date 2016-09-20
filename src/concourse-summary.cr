@@ -4,7 +4,7 @@ require "kemal"
 
 require "./concourse-summary/*"
 
-alias GroupHash = NilableHash(String, NilableHash(String, Array(String)?)?)
+alias GroupHash = Hash(String, Hash(String, Array(String)?)?)
 REFRESH_INTERVAL = (ENV["REFRESH_INTERVAL"]? || 30).to_i
 GROUPS = Hash(String, GroupHash).from_json(ENV["CS_GROUPS"]? || "{}")
 
