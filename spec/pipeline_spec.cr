@@ -4,11 +4,11 @@ require "mocks/spec"
 require "../src/concourse-summary/pipeline"
 
 Mocks.create_double "Response" do
-  mock status_code() as Int32
-  mock body() as String
+  mock status_code().as(Int32)
+  mock body().as(String)
 end
 Mocks.create_double "Client" do
-  mock get(path) as Response
+  mock get(path).as(Response)
 end
 
 
