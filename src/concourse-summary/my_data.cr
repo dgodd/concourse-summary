@@ -34,9 +34,8 @@ class MyData
     (@statuses[status].to_f / @statuses.values.sum * 100).floor.to_i
   end
 
-  def self.get_data(host, username, password, pipelines = nil)
-    client = HTTP::Client.new(host, tls: true)
-    client.basic_auth(username, password)
+  def self.get_data(host, username, password, pipelines = nil, login_form = false)
+    client = get_client(host, username, password, login_form)
 
     Pipeline.all(client).map do |pipeline|
       next if pipelines && !pipelines.has_key?(pipeline.name)
@@ -96,6 +95,20 @@ class MyData
       object.field "paused", @paused
       object.field "statuses", @statuses
     end
+  end
+
+  private def self.get_client(host, username, password, login_form = false)
+    client = HTTP::Client.new(host, tls: true)
+    if username.to_s.size > 0
+      if login_form
+        resp = client.post_form("/teams/main/login", { "username" => username.to_s, "password" => password.to_s })
+        cookie = resp.headers["Set-Cookie"].split(";").first
+        client.before_request { |request| request.headers["Cookie"] = cookie }
+      else
+        client.basic_auth(username, password)
+      end
+    end
+    client
   end
 end
 
