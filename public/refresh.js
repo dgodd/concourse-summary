@@ -11,7 +11,7 @@ var scaletext = function() {
     var box_text = box.innerText || box.textContent;
     var split_box_text = box_text.split(/\r?\n/)
     var last_line = split_box_text[split_box_text.length -1]
-    var width = ctx.measureText(last_line).width;
+    var width = ctx.measureText(last_line).width +10;
     var linewidth = $( box ).width();
 
     var inner = $( '.inner' );
@@ -23,11 +23,10 @@ var scaletext = function() {
       $( '.' + last_line ).css( 'font-size', font_size );
       ctx_font = font_size + "px " + font_family
       ctx.font = ctx_font
-      width = ctx.measureText(last_line).width
+      width = ctx.measureText(last_line).width +10
     }
   });
 };
-scaletext();
 var onerror = function() {
   document.body.innerHTML = '<div class="time">' + Date() + ' (<span id="countdown">' + refresh_interval + '</span>)</div><h1>ERROR</h1>';
 };
@@ -58,3 +57,4 @@ setInterval(function() {
     el.innerText = counter - 1;
   }
 }, 1000)
+scaletext();
