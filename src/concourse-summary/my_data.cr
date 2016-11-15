@@ -1,4 +1,5 @@
 require "http/client"
+require "openssl/ssl/context"
 
 class MyData
   @pipeline : String?
@@ -98,7 +99,13 @@ class MyData
   end
 
   private def self.get_client(host, username, password, login_form = false)
-    client = HTTP::Client.new(host, tls: true)
+    if ENV["SKIP_SSL_VALIDATION"]?
+      context = OpenSSL::SSL::Context::Client.new
+      context.verify_mode=(OpenSSL::SSL::VerifyMode::None)
+    else
+      context = true
+    end
+    client = HTTP::Client.new(host, tls: context)
     if username.to_s.size > 0
       if login_form
         client.basic_auth(username.to_s, password.to_s)
