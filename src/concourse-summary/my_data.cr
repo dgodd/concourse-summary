@@ -99,7 +99,7 @@ class MyData
   end
 
   private def self.get_client(host, username, password, login_form = false)
-    if ENV["SKIP_SSL_VALIDATION"]? || "false" == "true"
+    if ENV["SKIP_SSL_VALIDATION"]?
       context = OpenSSL::SSL::Context::Client.new
       context.verify_mode=(OpenSSL::SSL::VerifyMode::None)
     else
