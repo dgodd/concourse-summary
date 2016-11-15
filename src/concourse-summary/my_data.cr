@@ -101,7 +101,8 @@ class MyData
     client = HTTP::Client.new(host, tls: true)
     if username.to_s.size > 0
       if login_form
-        resp = client.post_form("/teams/main/login", { "username" => username.to_s, "password" => password.to_s })
+        client.basic_auth(username.to_s, password.to_s)
+        resp = client.get("/api/v1/teams/main/auth/token")
         cookie = resp.headers["Set-Cookie"].split(";").first
         client.before_request { |request| request.headers["Cookie"] = cookie }
       else
