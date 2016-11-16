@@ -2,7 +2,7 @@ version: 1.0
 shards:
   kemal:
     github: sdogruyol/kemal
-    commit: ddc92c44e08966151ea714cb9c56289f75181d35
+    commit: 14b094d52faf072e0fa5e115723461d9e94d418f
 
   kilt:
     github: jeromegn/kilt
@@ -18,7 +18,7 @@ shards:
 
   radix:
     github: luislavena/radix
-    version: 0.3.2
+    version: 0.3.4
 
   singleton:
     github: waterlink/singleton.cr
