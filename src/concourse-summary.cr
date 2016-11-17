@@ -29,7 +29,7 @@ def process(data, ignore_groups)
   statuses = MyData.statuses(data)
 end
 
-get "/host/:host" do |env|
+get "/host/:host/**" do |env|
   refresh_interval,username,password,ignore_groups,login_form = setup(env)
   host = env.params.url["host"]
 
