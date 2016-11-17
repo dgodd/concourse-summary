@@ -4,6 +4,9 @@ require "kemal"
 
 require "./concourse-summary/*"
 
+serve_static({"gzip" => true, "dir_listing" => false})
+gzip true
+
 alias GroupHash = Hash(String, Hash(String, Array(String)?)?)
 REFRESH_INTERVAL = (ENV["REFRESH_INTERVAL"]? || 30).to_i
 GROUPS = Hash(String, GroupHash).from_json(ENV["CS_GROUPS"]? || "{}")
