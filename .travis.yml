@@ -1,4 +1,6 @@
 language: crystal
+crystal:
+  - 0.19.4
 deploy:
   provider: cloudfoundry
   api: https://api.run.pivotal.io
