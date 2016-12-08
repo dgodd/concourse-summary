@@ -1,28 +1,14 @@
 window.refresh_interval = window.refresh_interval || 30;
 var scaletext = function() {
-  $( '.outer' ).each(function ( i, box ) {
-    var box_text = box.innerText || box.textContent;
-    var split_box_text = box_text.split(/\r?\n/);
-    split_box_text.forEach(function(linetext) {
-      var canvas = document.createElement('canvas');
-      var ctx = canvas.getContext("2d");
-      var font_family = $('body').css('font-family');
-      var font_size_px = $('body').css('font-size');
-      var font_size = parseInt(font_size_px.split("px")[0], 10);
-      var ctx_font = font_size + "px " + font_family;
-      ctx.font = ctx_font;
-      var width = ctx.measureText(linetext).width +10;
-      var linewidth = $( box ).width();
-
-      while ( width > linewidth ) {
-        --font_size;
-        $( '.' + linetext ).css( 'font-size', font_size );
-        ctx_font = font_size + "px " + font_family;
-        ctx.font = ctx_font;
-        width = ctx.measureText(linetext).width +10;
-      }
-    });
-  });
+  var x = document.querySelectorAll('.inner > span > span')
+  for (var i = 0; i < x.length; i++) {
+    var y = x[i];
+    var z = y.parentNode
+    var multi = (z.offsetWidth * 0.8) / y.offsetWidth
+    if (multi < 1) {
+      y.style.fontSize = (multi * 100) + '%'
+    }
+  }
 };
 var onerror = function() {
   document.body.innerHTML = '<div class="time">' + Date() + ' (<span id="countdown">' + refresh_interval + '</span>)</div><h1>ERROR</h1>';

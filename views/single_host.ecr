@@ -9,7 +9,7 @@
   <% if data.paused %><div class="paused"></div><% end %>
   <div class="inner">
   <% data.labels.each do |label| %>
-    <span class="<%= label %>"><%= label %></span>
+    <span class="<%= label %>"><span><%= label %></span></span>
   <% end %>
   </div>
 </a>
