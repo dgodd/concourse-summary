@@ -1,0 +1,1679 @@
+<html><head>
+    <title>2016-12-08 13:57:38 +0000 | Concourse Summary</title>
+    <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32">
+    <style>
+      body { margin:0; padding:0; font-family: monospace, sans-serif; font-size: 20px; line-height: 1.6em; text-align:center; background: #263748; color: #E6E7E8; }
+      a { color: #E6E7E8; }
+      .time { padding:0 8px; margin:0 0 16px 0; background: #1A252F; color: #E6E7E8; }
+      .outer { display:inline-block; width: 200px; height: 120px; color: #E6E7E8; background: #5C6C7D; position: relative; margin: 8px; }
+      .status { position: absolute; top:0; bottom: 0; left:0; right:0; white-space:nowrap; overflow:hidden; tex-align:left; }
+      .aborted, .errored, .failed, .succeeded { display:inline-block;height:120px;margin:0;padding:0;float:left; }
+      .aborted { background: #8F4B2D; }
+      .errored { background: #E67E21; }
+      .failed { background: #E74C3C; }
+      .succeeded { background: #2ECC71; }
+      .paused { position:absolute;top:0;bottom:0;left:0;right:0;box-sizing: border-box; border:14px solid #2682D5; }
+      .inner { position: absolute; top:0; bottom: 0; left:0; right:0; text-align: center; text-decoration: none; white-space: nowrap; overflow: hidden;}
+      .inner { display: flex; justify-content: center; flex-direction: column; height: 120px; }
+      .running .inner { height: 100px; }
+       @-webkit-keyframes pulseBorder {
+           from { outline-offset: 0; }
+             to { outline-offset: 7px; }
+       }
+       .running {
+         -webkit-animation-name: pulseBorder;
+         -webkit-animation-iteration-count: infinite;
+         -webkit-animation-timing-function: ease;
+         -webkit-animation-direction: alternate;
+         -webkit-animation-duration: 0.5s;
+         outline: solid 7px #F2C500;
+         outline-offset: 0;
+       }
+    </style>
+<script>
+function resize() {
+	var x = document.querySelectorAll('.inner > span > span')
+  for (var i = 0; i < x.length; i++) {
+		var y = x[i];
+    var z = y.parentNode
+		var multi = (z.offsetWidth * 0.8) / y.offsetWidth
+		if (multi < 1) {
+			y.style.fontSize = (multi * 100) + '%'
+		}
+	}
+}
+</script>
+  </head>
+  <body onload="resize()">
+    <div class="time">2016-12-08 13:57:38 +0000 (<span id="countdown">22</span>)<a href="https://github.com/dgodd/concourse-summary" target="_blank" style="position:absolute;right:0;top:0;"><img src="/github.png" width="32" height="32"></a></div>
+
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh?groups=bosh" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 5%;"></div>
+    <div class="succeeded" style="width: 94%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh"><span>bosh</span></span>
+  
+    <span class="bosh"><span>bosh</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh?groups=2.3" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh"><span>bosh</span></span>
+  
+    <span class="2.3"><span>2.3</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh?groups=mysql" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh"><span>bosh</span></span>
+  
+    <span class="mysql"><span>mysql</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh?groups=postgres" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh"><span>bosh</span></span>
+  
+    <span class="postgres"><span>postgres</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh?groups=finalize" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh"><span>bosh</span></span>
+  
+    <span class="finalize"><span>finalize</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:os-image" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:os-image"><span>bosh:os-image</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:stemcells?groups=all" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 16%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 83%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:stemcells"><span>bosh:stemcells</span></span>
+  
+    <span class="all"><span>all</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:stemcells?groups=openstack" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:stemcells"><span>bosh:stemcells</span></span>
+  
+    <span class="openstack"><span>openstack</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:stemcells?groups=ubuntu" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:stemcells"><span>bosh:stemcells</span></span>
+  
+    <span class="ubuntu"><span>ubuntu</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:stemcells?groups=centos" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:stemcells"><span>bosh:stemcells</span></span>
+  
+    <span class="centos"><span>centos</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:stemcells?groups=vsphere" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:stemcells"><span>bosh:stemcells</span></span>
+  
+    <span class="vsphere"><span>vsphere</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:stemcells?groups=vcloud" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:stemcells"><span>bosh:stemcells</span></span>
+  
+    <span class="vcloud"><span>vcloud</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:stemcells?groups=azure" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:stemcells"><span>bosh:stemcells</span></span>
+  
+    <span class="azure"><span>azure</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:stemcells?groups=google" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:stemcells"><span>bosh:stemcells</span></span>
+  
+    <span class="google"><span>google</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:stemcells?groups=bats" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 100%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 0%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:stemcells"><span>bosh:stemcells</span></span>
+  
+    <span class="bats"><span>bats</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:stemcells?groups=aws" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:stemcells"><span>bosh:stemcells</span></span>
+  
+    <span class="aws"><span>aws</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:cli" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 14%;"></div>
+    <div class="succeeded" style="width: 57%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:cli"><span>bosh:cli</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh-utils" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh-utils"><span>bosh-utils</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/config-server" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 81%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="config-server"><span>config-server</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh-agent" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 20%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 80%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh-agent"><span>bosh-agent</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh-init" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 66%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh-init"><span>bosh-init</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:davcli?groups=davcli" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:davcli"><span>bosh:davcli</span></span>
+  
+    <span class="davcli"><span>davcli</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:aws-ubuntu-bats?groups=environments" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:aws-ubuntu-bats"><span>bosh:aws-ubuntu-bats</span></span>
+  
+    <span class="environments"><span>environments</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:aws-ubuntu-bats?groups=bosh-aws-ubuntu-bats" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:aws-ubuntu-bats"><span>bosh:aws-ubuntu-bats</span></span>
+  
+    <span class="bosh-aws-ubuntu-bats"><span>bosh-aws-ubuntu-bats</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/windows-agent-deps" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 50%;"></div>
+    <div class="succeeded" style="width: 50%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="windows-agent-deps"><span>windows-agent-deps</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/windows-stemcells" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="windows-stemcells"><span>windows-stemcells</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/compiled-releases" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="compiled-releases"><span>compiled-releases</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:docker-images" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:docker-images"><span>bosh:docker-images</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/255.x:bosh?groups=bosh" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 83%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="255.x:bosh"><span>255.x:bosh</span></span>
+  
+    <span class="bosh"><span>bosh</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/255.x:bosh?groups=1.9" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 60%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="255.x:bosh"><span>255.x:bosh</span></span>
+  
+    <span class="1.9"><span>1.9</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/255.x:bosh?groups=2.1" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 66%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="255.x:bosh"><span>255.x:bosh</span></span>
+  
+    <span class="2.1"><span>2.1</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/255.x:bosh?groups=mysql" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 66%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="255.x:bosh"><span>255.x:bosh</span></span>
+  
+    <span class="mysql"><span>mysql</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/255.x:bosh?groups=postgres" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 71%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="255.x:bosh"><span>255.x:bosh</span></span>
+  
+    <span class="postgres"><span>postgres</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/jenkins-stemcells?groups=all" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="jenkins-stemcells"><span>jenkins-stemcells</span></span>
+  
+    <span class="all"><span>all</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/jenkins-stemcells?groups=3263.x" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="jenkins-stemcells"><span>jenkins-stemcells</span></span>
+  
+    <span class="3263.x"><span>3263.x</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/jenkins-stemcells?groups=3233.x" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="jenkins-stemcells"><span>jenkins-stemcells</span></span>
+  
+    <span class="3233.x"><span>3233.x</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/jenkins-stemcells?groups=3151.x" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="jenkins-stemcells"><span>jenkins-stemcells</span></span>
+  
+    <span class="3151.x"><span>3151.x</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/jenkins-stemcells?groups=3262.x" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="jenkins-stemcells"><span>jenkins-stemcells</span></span>
+  
+    <span class="3262.x"><span>3262.x</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:stemcells:3312.x?groups=all" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:stemcells:3312.x"><span>bosh:stemcells:3312.x</span></span>
+  
+    <span class="all"><span>all</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:stemcells:3312.x?groups=aws" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:stemcells:3312.x"><span>bosh:stemcells:3312.x</span></span>
+  
+    <span class="aws"><span>aws</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:stemcells:3312.x?groups=ubuntu" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:stemcells:3312.x"><span>bosh:stemcells:3312.x</span></span>
+  
+    <span class="ubuntu"><span>ubuntu</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:stemcells:3312.x?groups=centos" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:stemcells:3312.x"><span>bosh:stemcells:3312.x</span></span>
+  
+    <span class="centos"><span>centos</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:stemcells:3312.x?groups=azure" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:stemcells:3312.x"><span>bosh:stemcells:3312.x</span></span>
+  
+    <span class="azure"><span>azure</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:stemcells:3312.x?groups=google" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:stemcells:3312.x"><span>bosh:stemcells:3312.x</span></span>
+  
+    <span class="google"><span>google</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:stemcells:3312.x?groups=openstack" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:stemcells:3312.x"><span>bosh:stemcells:3312.x</span></span>
+  
+    <span class="openstack"><span>openstack</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:stemcells:3312.x?groups=vsphere" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:stemcells:3312.x"><span>bosh:stemcells:3312.x</span></span>
+  
+    <span class="vsphere"><span>vsphere</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:stemcells:3312.x?groups=vcloud" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:stemcells:3312.x"><span>bosh:stemcells:3312.x</span></span>
+  
+    <span class="vcloud"><span>vcloud</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:stemcells:3312.x?groups=bats" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:stemcells:3312.x"><span>bosh:stemcells:3312.x</span></span>
+  
+    <span class="bats"><span>bats</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:257.x?groups=bosh" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 88%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:257.x"><span>bosh:257.x</span></span>
+  
+    <span class="bosh"><span>bosh</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:257.x?groups=1.9" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 66%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:257.x"><span>bosh:257.x</span></span>
+  
+    <span class="1.9"><span>1.9</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:257.x?groups=2.3" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 75%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:257.x"><span>bosh:257.x</span></span>
+  
+    <span class="2.3"><span>2.3</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:257.x?groups=mysql" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 60%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:257.x"><span>bosh:257.x</span></span>
+  
+    <span class="mysql"><span>mysql</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:257.x?groups=postgres" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 71%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:257.x"><span>bosh:257.x</span></span>
+  
+    <span class="postgres"><span>postgres</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh-agent:257.x" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 50%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 50%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="bosh-agent:257.x"><span>bosh-agent:257.x</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:os-image:257.x" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:os-image:257.x"><span>bosh:os-image:257.x</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:os-image:257.x-vivid" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="bosh:os-image:257.x-vivid"><span>bosh:os-image:257.x-vivid</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:257.x-3263.x?groups=bosh" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 76%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:257.x-3263.x"><span>bosh:257.x-3263.x</span></span>
+  
+    <span class="bosh"><span>bosh</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:257.x-3263.x?groups=1.9" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 66%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:257.x-3263.x"><span>bosh:257.x-3263.x</span></span>
+  
+    <span class="1.9"><span>1.9</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:257.x-3263.x?groups=2.3" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 75%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:257.x-3263.x"><span>bosh:257.x-3263.x</span></span>
+  
+    <span class="2.3"><span>2.3</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:257.x-3263.x?groups=mysql" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 60%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:257.x-3263.x"><span>bosh:257.x-3263.x</span></span>
+  
+    <span class="mysql"><span>mysql</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:257.x-3263.x?groups=postgres" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 71%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:257.x-3263.x"><span>bosh:257.x-3263.x</span></span>
+  
+    <span class="postgres"><span>postgres</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:os-image:257.x-3263.x" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:os-image:257.x-3263.x"><span>bosh:os-image:257.x-3263.x</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh-agent:257.x-3263.x" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh-agent:257.x-3263.x"><span>bosh-agent:257.x-3263.x</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:256.x?groups=bosh" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 85%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:256.x"><span>bosh:256.x</span></span>
+  
+    <span class="bosh"><span>bosh</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:256.x?groups=1.9" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 60%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:256.x"><span>bosh:256.x</span></span>
+  
+    <span class="1.9"><span>1.9</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:256.x?groups=2.1" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 66%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:256.x"><span>bosh:256.x</span></span>
+  
+    <span class="2.1"><span>2.1</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:256.x?groups=mysql" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 66%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:256.x"><span>bosh:256.x</span></span>
+  
+    <span class="mysql"><span>mysql</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:256.x?groups=postgres" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 71%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:256.x"><span>bosh:256.x</span></span>
+  
+    <span class="postgres"><span>postgres</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:os-image:256.x" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 33%;"></div>
+    <div class="succeeded" style="width: 66%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="bosh:os-image:256.x"><span>bosh:os-image:256.x</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:256.x-3233.x?groups=bosh" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 78%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:256.x-3233.x"><span>bosh:256.x-3233.x</span></span>
+  
+    <span class="bosh"><span>bosh</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:256.x-3233.x?groups=1.9" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 60%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:256.x-3233.x"><span>bosh:256.x-3233.x</span></span>
+  
+    <span class="1.9"><span>1.9</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:256.x-3233.x?groups=2.1" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 66%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:256.x-3233.x"><span>bosh:256.x-3233.x</span></span>
+  
+    <span class="2.1"><span>2.1</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:256.x-3233.x?groups=mysql" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 66%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:256.x-3233.x"><span>bosh:256.x-3233.x</span></span>
+  
+    <span class="mysql"><span>mysql</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:256.x-3233.x?groups=postgres" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 71%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:256.x-3233.x"><span>bosh:256.x-3233.x</span></span>
+  
+    <span class="postgres"><span>postgres</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:os-image:256.x-3233.x" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 33%;"></div>
+    <div class="succeeded" style="width: 66%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:os-image:256.x-3233.x"><span>bosh:os-image:256.x-3233.x</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:os-image:3146.x" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 33%;"></div>
+    <div class="succeeded" style="width: 66%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="bosh:os-image:3146.x"><span>bosh:os-image:3146.x</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:os-image:3151.x" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  
+  <div class="inner">
+  
+    <span class="bosh:os-image:3151.x"><span>bosh:os-image:3151.x</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:os-image:3146.12" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 33%;"></div>
+    <div class="succeeded" style="width: 66%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="bosh:os-image:3146.12"><span>bosh:os-image:3146.12</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:os-image:3146.11-os-image" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 33%;"></div>
+    <div class="succeeded" style="width: 66%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="bosh:os-image:3146.11-os-image"><span>bosh:os-image:3146.11-os-image</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/3146.10" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="3146.10"><span>3146.10</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:3146.9-os-image" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="bosh:3146.9-os-image"><span>bosh:3146.9-os-image</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/3146.7-os-image" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="3146.7-os-image"><span>3146.7-os-image</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:os-image-deprecated" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 66%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 33%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="bosh:os-image-deprecated"><span>bosh:os-image-deprecated</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/%5E%5E%5E%5E%5E%5E%5E%5E%5E%5EBOSH_CORE%5E%5E%5E%5E%5E%5E%5E%5E%5E%5E" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 100%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 0%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="^^^^^^^^^^BOSH_CORE^^^^^^^^^^"><span>^^^^^^^^^^BOSH_CORE^^^^^^^^^^</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:vsphere-bats?groups=vsphere-bats" target="_blank" class="outer running">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="bosh:vsphere-bats"><span>bosh:vsphere-bats</span></span>
+  
+    <span class="vsphere-bats"><span>vsphere-bats</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:os-image:3197.1" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="bosh:os-image:3197.1"><span>bosh:os-image:3197.1</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/test-bosh-lite" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 100%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 0%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="test-bosh-lite"><span>test-bosh-lite</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:os-image:hotfix-117646763" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="bosh:os-image:hotfix-117646763"><span>bosh:os-image:hotfix-117646763</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/wip_errand_logs?groups=bosh" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="wip_errand_logs"><span>wip_errand_logs</span></span>
+  
+    <span class="bosh"><span>bosh</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/wip_errand_logs?groups=1.9" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="wip_errand_logs"><span>wip_errand_logs</span></span>
+  
+    <span class="1.9"><span>1.9</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/wip_errand_logs?groups=2.1" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="wip_errand_logs"><span>wip_errand_logs</span></span>
+  
+    <span class="2.1"><span>2.1</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/wip_errand_logs?groups=mysql" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="wip_errand_logs"><span>wip_errand_logs</span></span>
+  
+    <span class="mysql"><span>mysql</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/wip_errand_logs?groups=postgres" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="wip_errand_logs"><span>wip_errand_logs</span></span>
+  
+    <span class="postgres"><span>postgres</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/wip_errand_logs_agent" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="wip_errand_logs_agent"><span>wip_errand_logs_agent</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:os-image:255.x" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 33%;"></div>
+    <div class="succeeded" style="width: 66%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="bosh:os-image:255.x"><span>bosh:os-image:255.x</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:os-image:3146.6" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="bosh:os-image:3146.6"><span>bosh:os-image:3146.6</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:os-image:hotfix-115644307" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="bosh:os-image:hotfix-115644307"><span>bosh:os-image:hotfix-115644307</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh:os-image:hotfix-113881681" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="bosh:os-image:hotfix-113881681"><span>bosh:os-image:hotfix-113881681</span></span>
+  
+  </div>
+</a>
+
+<a href="https://main.bosh-ci.cf-app.com/teams/main/pipelines/bosh-aws-cpi-maria?groups=bosh-aws-cpi" target="_blank" class="outer">
+  <div class="status">
+    <div class="aborted" style="width: 0%;"></div>
+    <div class="errored" style="width: 0%;"></div>
+    <div class="failed" style="width: 0%;"></div>
+    <div class="succeeded" style="width: 100%;"></div>
+  </div>
+  <div class="paused"></div>
+  <div class="inner">
+  
+    <span class="bosh-aws-cpi-maria"><span>bosh-aws-cpi-maria</span></span>
+  
+    <span class="bosh-aws-cpi"><span>bosh-aws-cpi</span></span>
+  
+  </div>
+</a>
+
+
+
+<div style="text-align:right;margin:1em;">
+
+  <a href="?ignore_groups">Collapse Groups</a></div>
+
+
+<script>window.refresh_interval = 30</script>
+<script src="/refresh.js"></script>
+
+
+  
+
+</body></html>
