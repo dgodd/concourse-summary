@@ -1,7 +1,6 @@
 language: crystal
 crystal:
   - latest
-  - nightly
 deploy:
   provider: cloudfoundry
   api: https://api.run.pivotal.io
