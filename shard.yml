@@ -16,5 +16,5 @@ license: MIT
 
 development_dependencies:
   mocks:
-    github: waterlink/mocks.cr
-    version: ~> 0.9
+    github: dgodd/mocks.cr
+    branch: master

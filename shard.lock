@@ -2,15 +2,15 @@ version: 1.0
 shards:
   kemal:
     github: sdogruyol/kemal
-    commit: 9c1c832c9aacd381bed2948863ee1407346f684f
+    commit: e95766456505a10922c43934311bd946c2b32994
 
   kilt:
     github: jeromegn/kilt
     version: 0.3.3
 
   mocks:
-    github: waterlink/mocks.cr
-    version: 0.9.3
+    github: dgodd/mocks.cr
+    commit: 8485810323d555e43dbf9cd948d65009d8fc3141
 
   multipart:
     github: RX14/multipart.cr
