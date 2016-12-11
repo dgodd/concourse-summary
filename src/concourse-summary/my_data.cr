@@ -36,7 +36,7 @@ class MyData
   end
 
   def self.get_data(host, username, password, pipelines = nil, login_form = false)
-    client = get_client(host, username, password, login_form)
+    client = HttpClient.new(host, username, password, login_form)
 
     Pipeline.all(client).map do |pipeline|
       next if pipelines && !pipelines.has_key?(pipeline.name)
@@ -96,27 +96,6 @@ class MyData
       object.field "paused", @paused
       object.field "statuses", @statuses
     end
-  end
-
-  private def self.get_client(host, username, password, login_form = false)
-    if ENV["SKIP_SSL_VALIDATION"]?
-      context = OpenSSL::SSL::Context::Client.new
-      context.verify_mode=(OpenSSL::SSL::VerifyMode::None)
-    else
-      context = true
-    end
-    client = HTTP::Client.new(host, tls: context)
-    if username.to_s.size > 0
-      if login_form
-        client.basic_auth(username.to_s, password.to_s)
-        resp = client.get("/api/v1/teams/main/auth/token")
-        cookie = resp.headers["Set-Cookie"].split(";").first
-        client.before_request { |request| request.headers["Cookie"] = cookie }
-      else
-        client.basic_auth(username, password)
-      end
-    end
-    client
   end
 end
 
