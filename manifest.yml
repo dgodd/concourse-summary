@@ -6,3 +6,4 @@ applications:
     env:
       HOSTS: ci.concourse.ci appdog.ci.cf-app.com buildpacks.ci.cf-app.com diego.ci.cf-app.com capi.ci.cf-app.com ci.shoetree.io?login_form
       CS_GROUPS: '{"test":{"buildpacks.ci.cf-app.com":{"binary-builder":["automated-builds","manual-builds"],"brats":null},"diego.ci.cf-app.com":{"greenhouse":null},"capi.ci.cf-app.com":null}}'
+      SKIP_SSL_VALIDATION: "true"
