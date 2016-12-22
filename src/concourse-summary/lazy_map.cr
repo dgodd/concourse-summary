@@ -1,11 +1,14 @@
 class Array(T)
   def lazy_map(&block : T -> U) forall U
-    ch = Channel(U).new(size)
-    self.each do |d|
+    ch = Channel(Tuple(Int32,U)).new(size)
+    self.each_with_index do |obj,i|
       spawn do
-        ch.send(block.call d)
+        ch.send({i, block.call(obj)})
       end
     end
-    Array(U).new(size) { |i| ch.receive }
+    Array(Tuple(Int32,U))
+      .new(size) { ch.receive }
+      .sort_by(&.[0])
+      .map(&.[1])
   end
 end
