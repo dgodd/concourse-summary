@@ -37,13 +37,14 @@ class MyData
 
   def self.get_data(host, username, password, pipelines = nil, login_form = false)
     client = HttpClient.new(host, username, password, login_form)
-
-    Pipeline.all(client).map do |pipeline|
-      next if pipelines && !pipelines.has_key?(pipeline.name)
+    Pipeline.all(client).select do |pipeline|
+      pipelines.nil? || pipelines.has_key?(pipeline.name)
+    end.lazy_map do |pipeline|
+      client = HttpClient.new(host, username, password, login_form)
       Job.all(client, pipeline.url).map do |job|
         {pipeline, job}
       end
-    end.flatten.compact
+    end.flatten
   end
 
   def self.filter_groups(data, pipelines)
