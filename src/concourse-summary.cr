@@ -1,4 +1,3 @@
-require "http/client"
 require "json"
 require "kemal"
 
@@ -20,8 +19,15 @@ def setup(env)
     raise Unauthorized.new
   end
 
+  collapso_toggle = env.params.query.map {|k,_| k}
   ignore_groups = env.params.query.has_key?("ignore_groups")
-  {refresh_interval,username,password,ignore_groups,login_form}
+  if ignore_groups
+    collapso_toggle = collapso_toggle - ["ignore_groups"]
+  else
+    collapso_toggle = collapso_toggle + ["ignore_groups"]
+  end
+
+  {refresh_interval,username,password,ignore_groups,collapso_toggle,login_form}
 end
 
 def process(data, ignore_groups)
@@ -32,7 +38,7 @@ def process(data, ignore_groups)
 end
 
 get "/host/:host/**" do |env|
-  refresh_interval,username,password,ignore_groups,login_form = setup(env)
+  refresh_interval,username,password,ignore_groups,collapso_toggle,login_form = setup(env)
   host = env.params.url["host"]
 
   data = MyData.get_data(host, username, password, nil, login_form)
@@ -42,7 +48,7 @@ get "/host/:host/**" do |env|
 end
 
 get "/group/:key" do |env|
-  refresh_interval,username,password,ignore_groups,login_form = setup(env)
+  refresh_interval,username,password,ignore_groups,collapso_toggle,login_form = setup(env)
 
   hosts = GROUPS[env.params.url["key"]]
   hosts = hosts.map do |host, pipelines|

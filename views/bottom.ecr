@@ -1,9 +1,12 @@
 <div style="text-align:right;margin:1em;">
-<% if ignore_groups %>
-  <a href="?">Show Groups</a></div>
-<% else %>
-  <a href="?ignore_groups">Collapse Groups</a></div>
-<% end %>
+  <a href="?<%= collapso_toggle.join("&") %>">
+    <% if ignore_groups %>
+      Show Groups
+    <% else %>
+      Collapse Groups
+    <% end %>
+  </a>
+</div>
 
 <script>window.refresh_interval = <%= refresh_interval %></script>
 <script src="/refresh.js"></script>
