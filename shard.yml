@@ -13,8 +13,3 @@ description: |
   Show a quick overview of all of your concourse.ci pipelines and groups
 
 license: MIT
-
-development_dependencies:
-  mocks:
-    github: dgodd/mocks.cr
-    branch: master

@@ -1,4 +1,6 @@
-class ExposeUnauthorizedHandler < HTTP::Handler
+class ExposeUnauthorizedHandler
+  include HTTP::Handler
+
   def call(context)
     begin
       credentials(context)

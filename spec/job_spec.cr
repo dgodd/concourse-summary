@@ -1,21 +1,30 @@
 require "spec"
-require "mocks"
-require "mocks/spec"
 require "../src/concourse-summary/job"
 
-Mocks.create_double "Response" do
-  mock status_code().as(Int32)
-  mock body().as(String)
+class Response
+  @status_code : Int32
+  @body : String?
+  getter status_code
+  getter body
+  def initialize(@status_code, @body)
+  end
 end
-Mocks.create_double "Client" do
-  mock get(path).as(Response)
+class Client
+  @path : String
+  @response : Response
+  def initialize(@path, @response)
+  end
+  def get(path)
+    assert { path == @path }
+    @response
+  end
 end
 
 describe "Job" do
   describe ".all" do
     it "returns requested pipelines" do
-      response = Mocks.double("Response", returns(status_code, 200), returns(body, %([{"name":"fred","groups":[],"next_build":null,"finished_build":null},{"name":"jane","groups":[],"next_build":null,"finished_build":null}])))
-      client = Mocks.double("Client", returns(get("/api/v1/some/path/jobs"), response))
+      response = Response.new(200, %([{"name":"fred","groups":[],"next_build":null,"finished_build":null},{"name":"jane","groups":[],"next_build":null,"finished_build":null}]))
+      client = Client.new("/api/v1/some/path/jobs", response)
 
       jobs = Job.all(client, "/some/path")
       jobs.map(&.name).should eq ["fred","jane"]
