@@ -94,7 +94,7 @@ describe "MyData" do
       data[0][1].groups.should eq ["g1","g2"]
 
       data = MyData.remove_group_info(data)
-      data[0][1].groups.should eq [nil]
+      data.should eq nil
     end
   end
 end
