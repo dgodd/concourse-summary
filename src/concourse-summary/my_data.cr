@@ -67,9 +67,10 @@ class MyData
     data.each do |pipeline, job|
       job.clear_groups
     end
+    data
   end
 
-  def self.statuses(data)
+  def self.statuses(data : Array(Tuple(Pipeline, Job)))
     hash = Hash(Tuple(String, String | Nil), MyData).new do |_, key|
       pipeline_name, group = key
       MyData.new(pipeline_name, group)
@@ -88,14 +89,14 @@ class MyData
     hash.values
   end
 
-  def to_json(io : IO)
-    io.json_object do |object|
-      object.field "pipeline", @pipeline || nil
-      object.field "group", @group || nil
-      object.field "url", href
-      object.field "running", @running
-      object.field "paused", @paused
-      object.field "statuses", @statuses
+  def to_json(json : JSON::Builder)
+    json.object do
+      json.field "pipeline", @pipeline || nil
+      json.field "group", @group || nil
+      json.field "url", href
+      json.field "running", @running
+      json.field "paused", @paused
+      json.field "statuses", @statuses.to_json
     end
   end
 end

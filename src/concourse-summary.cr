@@ -32,7 +32,7 @@ end
 
 def process(data, ignore_groups)
   if ignore_groups
-    data = MyData.remove_group_info(data)
+    MyData.remove_group_info(data)
   end
   statuses = MyData.statuses(data)
 end
