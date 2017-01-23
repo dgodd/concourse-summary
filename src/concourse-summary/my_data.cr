@@ -67,7 +67,6 @@ class MyData
     data.each do |pipeline, job|
       job.clear_groups
     end
-    data
   end
 
   def self.statuses(data : Array(Tuple(Pipeline, Job)))
