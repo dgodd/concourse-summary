@@ -1,0 +1,16 @@
+<div class="time"><%= Time.now %> (<span id="countdown"><%= refresh_interval %></span>)<a href="https://github.com/dgodd/concourse-summary" target="_blank" style="position:absolute;right:0;top:0;"><img src="/github.png" width="32" height="32"></a></div>
+
+<% jobs.each do |pipeline,job| %>
+<a href="https://<%= host %><%= pipeline.url %>" target="_blank" class="outer<%= job.next_build ? " running" : "" %>">
+  <div class="status">
+    <div class="<%= job.status %>" style="width: 100%;"></div>
+  </div>
+  <% if pipeline.paused %><div class="paused"></div><% end %>
+  <div class="inner">
+    <span class="<%= pipeline.name %>"><span><%= pipeline.name %></span></span>
+    <span class="<%= job.name %>"><span><%= job.name %></span></span>
+  </div>
+</a>
+<% end %>
+
+<% Kilt.embed "views/bottom.ecr" %>

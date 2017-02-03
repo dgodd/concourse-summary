@@ -37,6 +37,18 @@ def process(data, ignore_groups)
   statuses = MyData.statuses(data)
 end
 
+get "/host/jobs/:host/**" do |env|
+  refresh_interval,username,password,ignore_groups,collapso_toggle,login_form = setup(env)
+  host = env.params.url["host"]
+
+  data = MyData.get_data(host, username, password, nil, login_form)
+  jobs = data.select do |pipeline,job|
+    !pipeline.paused && (job.next_build || (job.finished_build && job.status != "succeeded"))
+  end
+
+  json_or_html(jobs, "jobs")
+end
+
 get "/host/:host/**" do |env|
   refresh_interval,username,password,ignore_groups,collapso_toggle,login_form = setup(env)
   host = env.params.url["host"]
