@@ -30,6 +30,11 @@ class Job
 
   def self.all(client, job_url : String)
     response = client.get("/api/v1#{job_url}/jobs")
-    Array(Job).from_json(response.body) rescue [] of Job
+    begin
+      Array(Job).from_json(response.body)
+    rescue ex
+      puts "EXCEPTION: #{job_url}"
+      [] of Job
+    end
   end
 end

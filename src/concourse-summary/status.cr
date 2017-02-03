@@ -1,5 +1,7 @@
 class Status
   JSON.mapping(
-    status: String
+    status: String,
+    start_time: Int64?,
+    end_time: Int64?,
   )
 end
