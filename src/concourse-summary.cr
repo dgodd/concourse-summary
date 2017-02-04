@@ -46,7 +46,7 @@ get "/host/jobs/:host/**" do |env|
     JobInfo.new(pipeline, job)
   end.select do |info|
     info.running || (!(info.status == "succeeded" || info.status.nil?) && !info.paused)
-  end
+  end.sort_by{|a| a.start_time || 0 }
 
   json_or_html(jobs, "jobs")
 end

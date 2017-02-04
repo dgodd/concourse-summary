@@ -1,6 +1,24 @@
 window.refresh_interval = window.refresh_interval || 30;
+var scaleboxes = function() {
+  var mult = window.innerHeight / document.body.clientHeight;
+  if (mult >= 1) return;
+  mult = mult + ((1 - mult) / 4);
+  var x = document.querySelectorAll('div.scalable a.outer');
+  for (var i = 0; i < x.length; i++) {
+    var y = x[i];
+    y.style.width = Math.floor(200 * mult) + "px";
+    y.style.height = Math.floor(120 * mult) + "px";
+  }
+  x = document.querySelectorAll('div.scalable a.outer div.inner');
+  for (var i = 0; i < x.length; i++) {
+    var y = x[i];
+    y.style.height = Math.floor(120 * mult) + "px";
+    y.style.lineHeight = Math.floor(120 * mult / 4) + "px";
+    y.style.fontSize = Math.floor(120 * mult / 6) + "px";
+  }
+};
 var scaletext = function() {
-  var x = document.querySelectorAll('.inner > span > span')
+  var x = document.querySelectorAll('div.scalable .inner > span > span')
   for (var i = 0; i < x.length; i++) {
     var y = x[i];
     var z = y.parentNode
@@ -18,6 +36,7 @@ var onsuccess = function(request) {
   doc.documentElement.innerHTML = request.response;
   document.head.innerHTML=doc.head.innerHTML;
   document.body.innerHTML=doc.body.innerHTML;
+  scaleboxes()
   scaletext();
 };
 setInterval(function() {
@@ -40,4 +59,5 @@ setInterval(function() {
     el.innerText = counter - 1;
   }
 }, 1000);
+scaleboxes()
 scaletext();

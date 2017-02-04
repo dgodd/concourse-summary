@@ -1,5 +1,5 @@
 <div class="time"><%= Time.now %> (<span id="countdown"><%= refresh_interval %></span>)<a href="https://github.com/dgodd/concourse-summary" target="_blank" style="position:absolute;right:0;top:0;"><img src="/github.png" width="32" height="32"></a></div>
-
+<div class="scalable">
 <% jobs.each do |info| %>
   <a href="https://<%= host %><%= info.url %>?<%= info.groups.map { |g| "groups=#{g}" }.join("&") %>" target="_blank" class="outer<%= info.running ? " running" : "" %>">
   <div class="status">
@@ -13,5 +13,6 @@
   </div>
 </a>
 <% end %>
+</div>
 
 <% Kilt.embed "views/bottom.ecr" %>
