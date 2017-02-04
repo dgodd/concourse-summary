@@ -1,2 +1,5 @@
+/download
 /.shards/
 /libs/
+/lib/
+/.crystal/
