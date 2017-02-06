@@ -35,5 +35,11 @@ class JobInfo
       end
     end
   end
+
+  def start_time_ago_days
+    start_time.try do |start|
+      (Time.now - Time.epoch(start)).days
+    end
+  end
 end
 
