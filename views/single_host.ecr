@@ -1,3 +1,4 @@
+<div class="scalable">
 <% statuses.each do |data| %>
 <a href="https://<%= host %><%= data.href %>" target="_blank" class="outer<%= data.running ? " running" : "" %>">
   <div class="status">
@@ -14,3 +15,4 @@
   </div>
 </a>
 <% end %>
+</div>
