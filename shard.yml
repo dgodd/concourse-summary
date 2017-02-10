@@ -5,6 +5,8 @@ dependencies:
   kemal:
     github: sdogruyol/kemal
     branch: master
+  stumpy_png:
+    github: l3kn/stumpy_png
 
 authors:
   - Dave Goddard <dave@goddard.id.au>

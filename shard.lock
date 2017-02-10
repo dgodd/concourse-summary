@@ -16,3 +16,11 @@ shards:
     github: luislavena/radix
     version: 0.3.7
 
+  stumpy_core:
+    git: https://github.com/l3kn/stumpy_core.git
+    commit: 5cb0a88a17c78a30c7041b96a7b08202a32d657e
+
+  stumpy_png:
+    github: l3kn/stumpy_png
+    commit: bb083cbaf29d07280da3e793f030a999a26aaf63
+
