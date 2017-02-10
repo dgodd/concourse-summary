@@ -1,5 +1,11 @@
 window.refresh_interval = window.refresh_interval || 30;
+var favicon=new Favico({
+    animation:'none'
+});
 var scaleboxes = function() {
+  var numRunning = document.querySelectorAll('div.scalable a.outer.running').length;
+  favicon.badge(numRunning);
+
   var mult = 1.0;
   while(window.innerHeight < document.body.clientHeight) {
     mult = mult * 0.95
@@ -31,6 +37,7 @@ var scaleboxes = function() {
     }
   }, 10);
 };
+
 var onerror = function() {
   document.body.innerHTML = '<div class="time">' + Date() + ' (<span id="countdown">' + refresh_interval + '</span>)</div><h1>ERROR</h1>';
 };
