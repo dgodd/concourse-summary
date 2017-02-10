@@ -45,10 +45,7 @@ get "/host/jobs/:host/**" do |env|
   jobs = data.map do |pipeline,job|
     JobInfo.new(pipeline, job)
   end.select do |info|
-    info.running || (!(info.status == "succeeded" || info.status.nil?) && !info.paused)
-  end.reject do |info|
-    start_time_days = info.start_time_ago_days || 0
-    start_time_days > 7 || (info.name.match(/specs-(edge|lts)-(aws|gcp)-develop/) && start_time_days > 1)
+    info.running || (info.status != "succeeded" && !info.paused)
   end.sort_by{|a| a.start_time || 0 }
 
   json_or_html(jobs, "jobs")
