@@ -1,23 +1,23 @@
 window.refresh_interval = window.refresh_interval || 30;
-var favicon=new Favico({
-    animation:'none'
-});
 var scaleboxes = function() {
-  var numRunning = document.querySelectorAll('div.scalable a.outer.running').length;
-  favicon.badge(numRunning);
-
-  var mult = 1.0;
-  while(window.innerHeight < document.body.clientHeight) {
-    mult = mult * 0.95
-    var x = document.querySelectorAll('div.scalable a.outer');
-    for (var i = 0; i < x.length; i++) {
-      var y = x[i];
-      y.style.width = Math.floor(200 * mult) + "px";
-      y.style.height = Math.floor(120 * mult) + "px";
-    }
-  }
+  setTimeout(function(){
+    var numRunning = document.querySelectorAll('div.scalable a.outer.running').length;
+    var favicon=new Favico({ animation:'none' });
+    favicon.badge(numRunning);
+  }, 0);
 
   setTimeout(function(){
+    var mult = 1.0;
+    while(window.innerHeight < document.body.clientHeight) {
+      mult = mult * 0.95
+      var x = document.querySelectorAll('div.scalable a.outer');
+      for (var i = 0; i < x.length; i++) {
+        var y = x[i];
+        y.style.width = Math.floor(200 * mult) + "px";
+        y.style.height = Math.floor(120 * mult) + "px";
+      }
+    }
+
     var x = document.querySelectorAll('div.scalable a.outer div.inner');
     for (var i = 0; i < x.length; i++) {
       var y = x[i];
@@ -35,7 +35,7 @@ var scaleboxes = function() {
         y.style.fontSize = (multi * 100) + '%'
       }
     }
-  }, 10);
+  }, 0);
 };
 
 var onerror = function() {
