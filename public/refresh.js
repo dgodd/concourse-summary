@@ -1,32 +1,35 @@
 window.refresh_interval = window.refresh_interval || 30;
 var scaleboxes = function() {
-  var mult = window.innerHeight / document.body.clientHeight;
-  if (mult >= 1) return;
-  mult = mult + ((1 - mult) / 4);
-  var x = document.querySelectorAll('div.scalable a.outer');
-  for (var i = 0; i < x.length; i++) {
-    var y = x[i];
-    y.style.width = Math.floor(200 * mult) + "px";
-    y.style.height = Math.floor(120 * mult) + "px";
-  }
-  x = document.querySelectorAll('div.scalable a.outer div.inner');
-  for (var i = 0; i < x.length; i++) {
-    var y = x[i];
-    y.style.height = Math.floor(120 * mult) + "px";
-    y.style.lineHeight = Math.floor(120 * mult / 4) + "px";
-    y.style.fontSize = Math.floor(120 * mult / 6) + "px";
-  }
-};
-var scaletext = function() {
-  var x = document.querySelectorAll('div.scalable .inner > span > span')
-  for (var i = 0; i < x.length; i++) {
-    var y = x[i];
-    var z = y.parentNode
-    var multi = (z.offsetWidth * 0.8) / y.offsetWidth
-    if (multi < 1) {
-      y.style.fontSize = (multi * 100) + '%'
+  var mult = 1.0;
+  while(window.innerHeight < document.body.clientHeight) {
+    mult = mult * 0.95
+    var x = document.querySelectorAll('div.scalable a.outer');
+    for (var i = 0; i < x.length; i++) {
+      var y = x[i];
+      y.style.width = Math.floor(200 * mult) + "px";
+      y.style.height = Math.floor(120 * mult) + "px";
     }
   }
+
+  setTimeout(function(){
+    var x = document.querySelectorAll('div.scalable a.outer div.inner');
+    for (var i = 0; i < x.length; i++) {
+      var y = x[i];
+      y.style.height = Math.floor(120 * mult) + "px";
+      y.style.lineHeight = Math.floor(120 * mult / 4) + "px";
+      y.style.fontSize = Math.floor(120 * mult / 6) + "px";
+    }
+
+    var x = document.querySelectorAll('div.scalable .inner > span > span')
+    for (var i = 0; i < x.length; i++) {
+      var y = x[i];
+      var z = y.parentNode
+      var multi = (z.offsetWidth * 0.8) / y.offsetWidth
+      if (multi < 1) {
+        y.style.fontSize = (multi * 100) + '%'
+      }
+    }
+  }, 10);
 };
 var onerror = function() {
   document.body.innerHTML = '<div class="time">' + Date() + ' (<span id="countdown">' + refresh_interval + '</span>)</div><h1>ERROR</h1>';
@@ -37,7 +40,6 @@ var onsuccess = function(request) {
   document.head.innerHTML=doc.head.innerHTML;
   document.body.innerHTML=doc.body.innerHTML;
   scaleboxes()
-  scaletext();
 };
 setInterval(function() {
   var request = new XMLHttpRequest();
@@ -59,5 +61,7 @@ setInterval(function() {
     el.innerText = counter - 1;
   }
 }, 1000);
-scaleboxes()
-scaletext();
+
+window.addEventListener("load", function() {
+  scaleboxes()
+});
