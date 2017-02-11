@@ -2,10 +2,10 @@
   <%= Time.now %> (<span id="countdown"><%= refresh_interval %></span>)
 
 <% if ignore_groups %>
-  <a style="position:absolute;right:42px;top:0;text-decoration:none;" href="?<%= collapso_toggle.join("&") %>" title="Show Groups">+</a>
+  <a class="groups" href="?<%= collapso_toggle.join("&") %>" title="Show Groups">+</a>
 <% else %>
-  <a style="position:absolute;right:42px;top:0;text-decoration:none;" href="?<%= collapso_toggle.join("&") %>" title="Collapse Groups">-</a>
+  <a class="groups" href="?<%= collapso_toggle.join("&") %>" title="Collapse Groups">-</a>
 <% end %>
 
-  <a href="https://github.com/dgodd/concourse-summary" target="_blank" style="position:absolute;right:0;top:0;"><img src="/github.png" width="32" height="32"></a>
+  <a class="github" href="https://github.com/dgodd/concourse-summary" target="_blank" style=""><img src="/github.png"></a>
 </div>
