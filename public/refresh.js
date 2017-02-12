@@ -1,39 +1,37 @@
 window.refresh_interval = window.refresh_interval || 30;
+
+var styles = document.createElement("style");
+document.head.appendChild(styles);
+
 var scaleboxes = function() {
-  setTimeout(function(){
-    var numRunning = document.querySelectorAll('div.scalable a.outer.running').length;
-    var favicon=new Favico({ animation:'none' });
-    favicon.badge(numRunning);
+  var x = document.querySelectorAll('div.scalable a.outer');
+  var y = ((window.innerHeight - 32) * window.innerWidth) / x.length;
+  var w = Math.floor(Math.sqrt(y)) - 4;
+  var h = w * 2 / 3;
+  boxStyle = "div.scalable a.outer {";
+  boxStyle += "width:"+w+"px;";
+  boxStyle += "height: "+h+"px;";
+  boxStyle += "}";
+  boxStyle += "div.scalable a.outer div.inner {";
+  boxStyle += "height: " + h + "px;";
+  boxStyle += "line-height: " + Math.floor(h / 4) + "px;";
+  boxStyle += "font-size: " + Math.floor(h / 6) + "px;";
+  boxStyle += "}";
+  styles.innerHTML = boxStyle;
 
-    var mult = 1.0;
-    while(window.innerHeight < document.body.clientHeight) {
-      mult = mult * 0.95
-      var x = document.querySelectorAll('div.scalable a.outer');
-      for (var i = 0; i < x.length; i++) {
-        var y = x[i];
-        y.style.width = Math.floor(200 * mult) + "px";
-        y.style.height = Math.floor(120 * mult) + "px";
-      }
-    }
+  var numRunning = document.querySelectorAll('div.scalable a.outer.running').length;
+  var favicon = new Favico({ animation:'none' });
+  favicon.badge(numRunning);
 
-    var x = document.querySelectorAll('div.scalable a.outer div.inner');
-    for (var i = 0; i < x.length; i++) {
-      var y = x[i];
-      y.style.height = Math.floor(120 * mult) + "px";
-      y.style.lineHeight = Math.floor(120 * mult / 4) + "px";
-      y.style.fontSize = Math.floor(120 * mult / 6) + "px";
+  var x = document.querySelectorAll('div.scalable .inner > span > span')
+  for (var i = 0; i < x.length; i++) {
+    var y = x[i];
+    var z = y.parentNode
+    var multi = (z.offsetWidth * 0.8) / y.offsetWidth
+    if (multi < 1) {
+      y.style.fontSize = (multi * 100) + '%'
     }
-
-    var x = document.querySelectorAll('div.scalable .inner > span > span')
-    for (var i = 0; i < x.length; i++) {
-      var y = x[i];
-      var z = y.parentNode
-      var multi = (z.offsetWidth * 0.8) / y.offsetWidth
-      if (multi < 1) {
-        y.style.fontSize = (multi * 100) + '%'
-      }
-    }
-  }, 0);
+  }
 };
 
 var onerror = function() {
@@ -42,8 +40,11 @@ var onerror = function() {
 var onsuccess = function(request) {
   var doc = document.implementation.createHTMLDocument("example");
   doc.documentElement.innerHTML = request.response;
-  document.head.innerHTML=doc.head.innerHTML;
+  if (document.getElementsByTagName("title")[0].getAttribute("rel") != doc.getElementsByTagName("title")[0].getAttribute("rel")) {
+    window.location.reload();
+  }
   document.body.innerHTML=doc.body.innerHTML;
+
   scaleboxes()
 };
 setInterval(function() {
@@ -67,6 +68,5 @@ setInterval(function() {
   }
 }, 1000);
 
-window.addEventListener("load", function() {
-  scaleboxes()
-});
+window.addEventListener("load", function() { scaleboxes() });
+window.addEventListener("resize", function() { scaleboxes() });

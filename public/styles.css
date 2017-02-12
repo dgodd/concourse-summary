@@ -1,0 +1,35 @@
+body {margin:0;padding:0;font-family:monospace, sans-serif;font-size:20px;line-height:1.6em;text-align:center;background:#263748;color:#E6E7E8;}
+a {color:#E6E7E8;}
+.time {line-height:32px;background:#1A252F;color:#E6E7E8;white-space:nowrap;}
+.time .right {position:absolute;top:0;;right:0;height:32px;background:#1A252F;}
+.time a {text-decoration:none;}
+.time .github {width:32px;height:32px;background:url(/github.png);display:inline-block;background-size:contain;}
+.scalable {
+  position:absolute;top:32px;right:0;bottom:0;left:0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+.outer {display:block;width:300px;height:200px;color:white;background:#5C6C7D;position:relative;margin:4px;}
+.status {position:absolute;top:0;bottom:0;left:0;right:0;white-space:nowrap;overflow:hidden;text-align:left;}
+.aborted, .errored, .failed, .succeeded {display:inline-block;height:100%;margin:0;padding:0;float:left;}
+.aborted {background:#8F4B2D;}
+.errored {background:#E67E21;}
+.failed {background:#E74C3C;}
+.succeeded {background:#2ECC71;}
+.paused {position:absolute;top:0;bottom:0;left:0;right:0;box-sizing:border-box;border:14px solid #2682D5;}
+.inner {position:absolute;top:0;bottom:0;left:0;right:0;text-align:center;text-decoration:none;white-space:nowrap;overflow:hidden;display:flex;justify-content:center;flex-direction:column;}
+.running .inner {height:100%;}
+ @-webkit-keyframes pulseBorder {
+  from { outline-offset: 0; }
+  to { outline-offset: 7px; }
+}
+.running {
+  -webkit-animation-name: pulseBorder;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease;
+  -webkit-animation-direction: alternate;
+  -webkit-animation-duration: 0.5s;
+  outline: solid 7px #F2C500;
+  outline-offset: 0;
+}

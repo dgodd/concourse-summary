@@ -76,6 +76,7 @@ get "/group/:key" do |env|
 end
 
 get "/" do |env|
+  refresh_interval = REFRESH_INTERVAL
   hosts = (ENV["HOSTS"]? || "").split(/\s+/)
   groups = GROUPS.keys
 

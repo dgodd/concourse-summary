@@ -1,11 +1,12 @@
 <div class="time">
   <%= Time.now %> (<span id="countdown"><%= refresh_interval %></span>)
-
+  <div class="right">
 <% if ignore_groups %>
   <a class="groups" href="?<%= collapso_toggle.join("&") %>" title="Show Groups">+</a>
 <% else %>
   <a class="groups" href="?<%= collapso_toggle.join("&") %>" title="Collapse Groups">-</a>
 <% end %>
 
-  <a class="github" href="https://github.com/dgodd/concourse-summary" target="_blank" style=""><img src="/github.png"></a>
+  <a class="github" href="https://github.com/dgodd/concourse-summary" target="_blank">&nbsp;</a>
+</div>
 </div>

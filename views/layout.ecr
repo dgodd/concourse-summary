@@ -1,40 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= Time.now %> | Concourse Summary</title>
+    <title rel="df92797b129d31c1e708b277b3ae9bcc87a16f13">Concourse Summary</title>
     <link rel="icon" type="image/png" href="/favicon.png" sizes="32x32">
-    <style>
-      body { margin:0; padding:0; font-family: monospace, sans-serif; font-size: 20px; line-height: 1.6em; text-align:center; background: #263748; color: #E6E7E8; }
-      a { color: #E6E7E8; }
-      .time { padding:0 8px; margin:0 0 16px 0; background: #1A252F; color: #E6E7E8; }
-      .time .groups { position:absolute;right:42px;top:0;text-decoration:none; }
-      .time .github { position:absolute;right:2px;top:2px; }
-      .time .github img { width:28px; height:28px; }
-      .outer { display:inline-block; width: 300px; height: 180px; color: white; background: #5C6C7D; position: relative; margin: 8px; }
-      .status { position: absolute; top:0; bottom: 0; left:0; right:0; white-space:nowrap; overflow:hidden; tex-align:left; }
-      .aborted, .errored, .failed, .succeeded { display:inline-block;height:180px;margin:0;padding:0;float:left; }
-      .aborted { background: #8F4B2D; }
-      .errored { background: #E67E21; }
-      .failed { background: #E74C3C; }
-      .succeeded { background: #2ECC71; }
-      .paused { position:absolute;top:0;bottom:0;left:0;right:0;box-sizing: border-box; border:14px solid #2682D5; }
-      .inner { position: absolute; top:0; bottom: 0; left:0; right:0; text-align: center; text-decoration: none; white-space: nowrap; overflow: hidden;}
-      .inner { display: flex; justify-content: center; flex-direction: column; height: 180px; }
-      .running .inner { height: 100px; }
-       @-webkit-keyframes pulseBorder {
-           from { outline-offset: 0; }
-             to { outline-offset: 7px; }
-       }
-       .running {
-         -webkit-animation-name: pulseBorder;
-         -webkit-animation-iteration-count: infinite;
-         -webkit-animation-timing-function: ease;
-         -webkit-animation-direction: alternate;
-         -webkit-animation-duration: 0.5s;
-         outline: solid 7px #F2C500;
-         outline-offset: 0;
-       }
-    </style>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+    <script>window.refresh_interval = <%= refresh_interval %></script>
+    <script src="/favico-0.3.10.min.js"></script>
+    <script src="/refresh.js"></script>
   </head>
   <body>
     <%= content %>
