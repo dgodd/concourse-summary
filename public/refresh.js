@@ -36,11 +36,12 @@ var scaleboxes = function() {
 
 var onerror = function() {
   document.body.innerHTML = '<div class="time">' + Date() + ' (<span id="countdown">' + refresh_interval + '</span>)</div><h1>ERROR</h1>';
+  document.head.setAttribute("rel", "error");
 };
 var onsuccess = function(request) {
   var doc = document.implementation.createHTMLDocument("example");
   doc.documentElement.innerHTML = request.response;
-  if (document.getElementsByTagName("title")[0].getAttribute("rel") != doc.getElementsByTagName("title")[0].getAttribute("rel")) {
+  if (document.head.getAttribute("rel") != doc.head.getAttribute("rel")) {
     window.location.reload();
   }
   document.body.innerHTML=doc.body.innerHTML;
