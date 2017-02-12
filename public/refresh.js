@@ -23,15 +23,17 @@ var scaleboxes = function() {
   var favicon = new Favico({ animation:'none' });
   favicon.badge(numRunning);
 
-  var x = document.querySelectorAll('div.scalable .inner > span > span')
-  for (var i = 0; i < x.length; i++) {
-    var y = x[i];
-    var z = y.parentNode
-    var multi = (z.offsetWidth * 0.8) / y.offsetWidth
-    if (multi < 1) {
-      y.style.fontSize = (multi * 100) + '%'
+  setTimeout(function(){
+    var x = document.querySelectorAll('div.scalable .inner > span > span')
+    for (var i = 0; i < x.length; i++) {
+      var y = x[i];
+      var z = y.parentNode
+      var multi = (z.offsetWidth * 0.8) / y.offsetWidth
+      if (multi < 1) {
+        y.style.fontSize = (multi * 100) + '%'
+      }
     }
-  }
+  }, 0);
 };
 
 var onerror = function() {
