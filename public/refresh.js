@@ -4,27 +4,28 @@ var styles = document.createElement("style");
 document.head.appendChild(styles);
 
 var scaleboxes = function() {
-  var x = document.querySelectorAll('div.scalable a.outer');
-  var y = ((window.innerHeight - 32) * window.innerWidth) / x.length;
+  var x = document.querySelectorAll('a.outer');
+  var notboxes = 32 + (32 * document.querySelectorAll('.group').length);
+  var y = ((window.innerHeight - notboxes) * window.innerWidth) / x.length;
   var w = Math.floor(Math.sqrt(y)) - 4;
   var h = w * 2 / 3;
-  boxStyle = "div.scalable a.outer {";
+  boxStyle = "a.outer {";
   boxStyle += "width:"+w+"px;";
   boxStyle += "height: "+h+"px;";
   boxStyle += "}";
-  boxStyle += "div.scalable a.outer div.inner {";
+  boxStyle += "a.outer div.inner {";
   boxStyle += "height: " + h + "px;";
   boxStyle += "line-height: " + Math.floor(h / 4) + "px;";
   boxStyle += "font-size: " + Math.floor(h / 6) + "px;";
   boxStyle += "}";
   styles.innerHTML = boxStyle;
 
-  var numRunning = document.querySelectorAll('div.scalable a.outer.running').length;
+  var numRunning = document.querySelectorAll('a.outer.running').length;
   var favicon = new Favico({ animation:'none' });
   favicon.badge(numRunning);
 
   setTimeout(function(){
-    var x = document.querySelectorAll('div.scalable .inner > span > span')
+    var x = document.querySelectorAll('a.outer .inner > span > span')
     for (var i = 0; i < x.length; i++) {
       var y = x[i];
       var z = y.parentNode

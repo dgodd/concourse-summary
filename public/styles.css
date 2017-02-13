@@ -10,6 +10,8 @@ a {color:#E6E7E8;}
   flex-flow: row wrap;
   justify-content: space-around;
 }
+.group > a {display:block;text-decoration:none;}
+.group > div {display:flex;flex-flow:row wrap;justify-content:space-around;}
 .outer {display:block;width:300px;height:200px;color:white;background:#5C6C7D;position:relative;margin:4px;}
 .status {position:absolute;top:0;bottom:0;left:0;right:0;white-space:nowrap;overflow:hidden;text-align:left;}
 .aborted, .errored, .failed, .succeeded {display:inline-block;height:100%;margin:0;padding:0;float:left;}

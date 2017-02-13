@@ -1,6 +1,10 @@
 <% Kilt.embed "views/header.ecr" %>
 
 <% hosts.each do |host,statuses| %>
-  <div><a href="/host/<%= host %>" style="text-decoration:none;"><%= host %></a></div>
-  <% Kilt.embed "views/single_host.ecr" %>
+<div class="group">
+  <a href="/host/<%= host %>"><%= host %></a>
+  <div>
+    <% Kilt.embed "views/single_host.ecr" %>
+  </div>
+</div>
 <% end %>
