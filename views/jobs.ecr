@@ -2,7 +2,7 @@
 
 <div class="scalable">
 <% jobs.each do |info| %>
-  <a href="https://<%= host %><%= info.url %>?<%= info.groups.map { |g| "groups=#{g}" }.join("&") %>" target="_blank" class="outer<%= info.running ? " running" : "" %>">
+  <a href="https://<%= host %><%= info.url %>/jobs/<%= info.name %>/builds/<%= info.latest_build_num %>" target="_blank" class="outer<%= info.running ? " running" : "" %>">
   <div class="status">
     <div class="<%= info.status %>" style="width: 100%;"></div>
   </div>

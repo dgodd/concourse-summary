@@ -9,6 +9,7 @@ class JobInfo
     status: String?,
     start_time: Int64?,
     run_time: String?,
+    latest_build_num: String,
   )
   def initialize(pipeline : Pipeline, job : Job)
     @pipeline = pipeline.name
@@ -34,12 +35,24 @@ class JobInfo
         @run_time = Time::Span.new(0, 0, run_time.to_i64).to_s
       end
     end
+
+    @latest_build_num = "NA"
+    job.finished_build.try do |build|
+      @latest_build_num = build.name
+    end
+    job.next_build.try do |build|
+      @latest_build_num = build.name
+    end
   end
 
   def start_time_ago_days
     start_time.try do |start|
       (Time.now - Time.epoch(start)).days
     end
+  end
+
+  def latest_build
+
   end
 end
 
