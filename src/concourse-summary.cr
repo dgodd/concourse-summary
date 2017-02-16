@@ -51,6 +51,21 @@ get "/host/jobs/:host/**" do |env|
   json_or_html(jobs, "jobs")
 end
 
+get "/jobs/match/:keyword/:host/**" do |env|
+  refresh_interval,username,password,ignore_groups,collapso_toggle,login_form = setup(env)
+  keyword = env.params.url["keyword"]
+  host = env.params.url["host"]
+
+  data = MyData.get_data(host, username, password, nil, login_form)
+  jobs = data.map do |pipeline,job|
+    JobInfo.new(pipeline, job)
+  end.select do |info|
+    info.name.includes? keyword
+  end.sort_by{|a| a.start_time || 0 }
+
+  json_or_html(jobs, "jobs")
+end
+
 get "/host/:host/**" do |env|
   refresh_interval,username,password,ignore_groups,collapso_toggle,login_form = setup(env)
   host = env.params.url["host"]
