@@ -8,7 +8,21 @@ var scaleboxes = function() {
   var notboxes = 32 + (32 * document.querySelectorAll('.group').length);
   var y = ((window.innerHeight - notboxes) * window.innerWidth) / x.length;
   var w = Math.floor(Math.sqrt(y)) - 4;
-  var h = w * 2 / 3;
+  var h = Math.floor(w * 2 / 3);
+
+  // Correct for too long
+  var perColumn = Math.floor(window.innerWidth / (w + 4));
+  var numRows = Math.ceil(x.length / perColumn)
+  var heightRequired = numRows * (h + 4) + notboxes;
+  if (heightRequired > window.innerHeight) {
+    numRows -= 1;
+    perColumn = Math.ceil(x.length / numRows);
+    w = Math.floor(window.innerWidth / perColumn) - 8;
+    h = Math.floor(w * 2 / 3);
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Set styles
   boxStyle = "a.outer {";
   boxStyle += "width:"+w+"px;";
   boxStyle += "height: "+h+"px;";
@@ -36,41 +50,6 @@ var scaleboxes = function() {
     }
   }, 0);
 };
-
-var onerror = function() {
-  document.body.innerHTML = '<div class="time">' + Date() + ' (<span id="countdown">' + refresh_interval + '</span>)</div><h1>ERROR</h1>';
-  document.head.setAttribute("rel", "error");
-};
-var onsuccess = function(request) {
-  var doc = document.implementation.createHTMLDocument("example");
-  doc.documentElement.innerHTML = request.response;
-  if (document.head.getAttribute("rel") != doc.head.getAttribute("rel")) {
-    window.location.reload();
-  }
-  document.body.innerHTML=doc.body.innerHTML;
-
-  scaleboxes()
-};
-setInterval(function() {
-  var request = new XMLHttpRequest();
-  request.open('GET', location.href, true);
-  request.onload = function() {
-    if (request.status >= 200 && request.status < 400) {
-      onsuccess(request);
-    } else {
-      onerror();
-    }
-  };
-  request.onerror = onerror;
-  request.send();
-}, refresh_interval * 1000);
-setInterval(function() {
-  var el = document.getElementById('countdown');
-  if(el) {
-    var counter = parseInt(el.innerText, 10);
-    el.innerText = counter - 1;
-  }
-}, 1000);
 
 window.addEventListener("load", function() { scaleboxes() });
 window.addEventListener("resize", function() { scaleboxes() });
