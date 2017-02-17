@@ -45,7 +45,7 @@ get "/host/jobs/:host/**" do |env|
   jobs = data.map do |pipeline,job|
     JobInfo.new(pipeline, job)
   end.select do |info|
-    info.running || (info.status != "succeeded" && !info.paused)
+    info.running || (!info.status.nil? && info.status != "succeeded" && !info.paused)
   end.sort_by{|a| a.start_time || 0 }
 
   json_or_html(jobs, "jobs")
