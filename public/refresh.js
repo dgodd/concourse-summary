@@ -20,11 +20,11 @@ var scaleboxes = function() {
     perColumn = Math.ceil(x.length / numRows);
     w = Math.floor(window.innerWidth / perColumn) - 8;
     h = Math.floor(w * 2 / 3);
-    document.body.style.overflow = 'hidden';
   }
 
  // Set styles
-  boxStyle = "a.outer {";
+  boxStyle = "body{overflow:hidden}";
+  boxStyle += "a.outer {";
   boxStyle += "width:"+w+"px;";
   boxStyle += "height: "+h+"px;";
   boxStyle += "}";
@@ -49,7 +49,7 @@ var scaleboxes = function() {
         y.style.fontSize = (multi * 100) + '%'
       }
     }
-  }, 0);
+  }, 10);
 };
 
 var onerror = function() {
