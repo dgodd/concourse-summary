@@ -9,6 +9,21 @@ var scaleboxes = function() {
   var y = ((window.innerHeight - notboxes) * window.innerWidth) / x.length;
   var w = Math.floor(Math.sqrt(y)) - 4;
   var h = w * 2 / 3;
+  var h = Math.floor(w * 2 / 3);
+
+  // Correct if too long
+  var perColumn = Math.floor(window.innerWidth / (w + 4));
+  var numRows = Math.ceil(x.length / perColumn)
+  var heightRequired = numRows * (h + 4) + notboxes;
+  if (heightRequired > window.innerHeight) {
+    numRows -= 1;
+    perColumn = Math.ceil(x.length / numRows);
+    w = Math.floor(window.innerWidth / perColumn) - 8;
+    h = Math.floor(w * 2 / 3);
+    document.body.style.overflow = 'hidden';
+  }
+
+ // Set styles
   boxStyle = "a.outer {";
   boxStyle += "width:"+w+"px;";
   boxStyle += "height: "+h+"px;";
