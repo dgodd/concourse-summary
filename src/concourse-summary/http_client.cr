@@ -1,6 +1,13 @@
 require "http/client"
 require "openssl/ssl/context"
 
+## FIXME - MonkeyPatch Cookies. Concourse does not accept URI.escape'd values
+class HTTP::Cookie
+  def to_cookie_header
+    "#{@name}=#{value}"
+  end
+end
+
 class HttpClient
   @client : HTTP::Client
 
@@ -17,8 +24,12 @@ class HttpClient
       if login_form
         @client.basic_auth(username.to_s, password.to_s)
         resp = @client.get("/api/v1/teams/main/auth/token")
-        cookie = resp.headers["Set-Cookie"].split(";").first
-        @client.before_request { |request| request.headers["Cookie"] = cookie }
+        cookie_name, cookie_value = resp.headers["Set-Cookie"].split(";").first.split(/=/,2)
+
+        @client = HTTP::Client.new(host, tls: context)
+        @client.before_request do |request|
+          request.cookies << HTTP::Cookie.new(cookie_name, cookie_value)
+        end
       else
         @client.basic_auth(username, password)
       end
