@@ -13,8 +13,13 @@ def setup(env)
   refresh_interval = REFRESH_INTERVAL
   username = env.store["credentials_username"]?
   password = env.store["credentials_password"]?
+  team_name = "main"
 
   login_form = env.params.query.has_key?("login_form")
+  if env.params.query.has_key?("login_team")
+    team_name = env.params.query["login_team"]
+    login_form = true
+  end
   if login_form && (username.to_s.size == 0 || password.to_s.size == 0)
     raise Unauthorized.new
   end
@@ -26,8 +31,6 @@ def setup(env)
   else
     collapso_toggle = collapso_toggle + ["ignore_groups"]
   end
-
-  team_name = (env.params.query["team"]? || "main").to_s
 
   {refresh_interval,username,password,ignore_groups,collapso_toggle,login_form,team_name}
 end
