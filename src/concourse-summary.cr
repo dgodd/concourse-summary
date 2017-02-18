@@ -27,7 +27,9 @@ def setup(env)
     collapso_toggle = collapso_toggle + ["ignore_groups"]
   end
 
-  {refresh_interval,username,password,ignore_groups,collapso_toggle,login_form}
+  team_name = (env.params.query["team"]? || "main").to_s
+
+  {refresh_interval,username,password,ignore_groups,collapso_toggle,login_form,team_name}
 end
 
 def process(data, ignore_groups)
@@ -38,7 +40,7 @@ def process(data, ignore_groups)
 end
 
 get "/host/jobs/:host/**" do |env|
-  refresh_interval,username,password,ignore_groups,collapso_toggle,login_form = setup(env)
+  refresh_interval,username,password,ignore_groups,collapso_toggle,login_form,team_name = setup(env)
   host = env.params.url["host"]
 
   data = MyData.get_data(host, username, password, nil, login_form)
@@ -52,11 +54,11 @@ get "/host/jobs/:host/**" do |env|
 end
 
 get "/jobs/match/:keyword/:host/**" do |env|
-  refresh_interval,username,password,ignore_groups,collapso_toggle,login_form = setup(env)
+  refresh_interval,username,password,ignore_groups,collapso_toggle,login_form,team_name = setup(env)
   keyword = env.params.url["keyword"]
   host = env.params.url["host"]
 
-  data = MyData.get_data(host, username, password, nil, login_form)
+  data = MyData.get_data(host, username, password, nil, login_form, team_name)
   jobs = data.map do |pipeline,job|
     JobInfo.new(pipeline, job)
   end.select do |info|
@@ -67,17 +69,17 @@ get "/jobs/match/:keyword/:host/**" do |env|
 end
 
 get "/host/:host/**" do |env|
-  refresh_interval,username,password,ignore_groups,collapso_toggle,login_form = setup(env)
+  refresh_interval,username,password,ignore_groups,collapso_toggle,login_form,team_name = setup(env)
   host = env.params.url["host"]
 
-  data = MyData.get_data(host, username, password, nil, login_form)
+  data = MyData.get_data(host, username, password, nil, login_form, team_name)
   statuses = process(data, ignore_groups)
 
   json_or_html(statuses, "host")
 end
 
 get "/group/:key" do |env|
-  refresh_interval,username,password,ignore_groups,collapso_toggle,login_form = setup(env)
+  refresh_interval,username,password,ignore_groups,collapso_toggle,login_form,team_name = setup(env)
 
   hosts = GROUPS[env.params.url["key"]]
   hosts = hosts.map do |host, pipelines|

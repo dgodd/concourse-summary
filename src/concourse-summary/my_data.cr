@@ -35,12 +35,12 @@ class MyData
     (@statuses[status].to_f / @statuses.values.sum * 100).floor.to_i
   end
 
-  def self.get_data(host, username, password, pipelines = nil, login_form = false)
-    client = HttpClient.new(host, username, password, login_form)
+  def self.get_data(host, username, password, pipelines = nil, login_form = false, team_name = "main")
+    client = HttpClient.new(host, username, password, login_form, team_name)
     Pipeline.all(client).select do |pipeline|
       pipelines.nil? || pipelines.has_key?(pipeline.name)
     end.lazy_map do |pipeline|
-      client = HttpClient.new(host, username, password, login_form)
+      client = HttpClient.new(host, username, password, login_form, team_name)
       Job.all(client, pipeline.url).map do |job|
         {pipeline, job}
       end
