@@ -5,6 +5,7 @@ class Job
   JSON.mapping(
     name: String,
     groups: Array(String?),
+    paused: Bool?,
     next_build: Status?,
     finished_build: Status?,
   )
@@ -23,6 +24,9 @@ class Job
   end
 
   def status
+    paused.try do |p|
+      return "paused_job" if p
+    end
     finished_build.try do |build|
       build.status
     end
