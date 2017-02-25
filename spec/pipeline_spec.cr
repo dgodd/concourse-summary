@@ -15,7 +15,7 @@ class Client
   def initialize(@path, @response)
   end
   def get(path)
-    assert { path == @path }
+    it { path == @path }
     @response
   end
 end
