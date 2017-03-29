@@ -11,16 +11,16 @@ GROUPS = parse_groups(ENV["CS_GROUPS"]? || "{}")
 
 def setup(env)
   refresh_interval = REFRESH_INTERVAL
-  username = env.store["credentials_username"]?
-  password = env.store["credentials_password"]?
+  username = env.store["credentials_username"]?.to_s
+  password = env.store["credentials_password"]?.to_s
   team_name = "main"
 
   login_form = env.params.query.has_key?("login_form")
   if env.params.query.has_key?("login_team")
-    team_name = env.params.query["login_team"]
+    team_name = env.params.query["login_team"].to_s
     login_form = true
   end
-  if login_form && (username.to_s.size == 0 || password.to_s.size == 0)
+  if login_form && (username.size == 0 || password.size == 0)
     raise Unauthorized.new
   end
 
