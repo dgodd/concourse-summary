@@ -1,7 +1,13 @@
 language: crystal
-before_install: apt-key adv --keyserver keys.gnupg.net --recv-keys A4EBAC6667697DD2
 crystal:
   - latest
+addons:
+  apt:
+    sources:
+    - sourceline: 'deb https://dist.crystal-lang.org/apt crystal main'
+      key_url: 'https://keybase.io/crystal/pgp_keys.asc'
+    packages:
+    - crystal
 deploy:
   provider: cloudfoundry
   api: https://api.run.pivotal.io
