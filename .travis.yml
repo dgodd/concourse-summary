@@ -1,4 +1,5 @@
 language: crystal
+before_install: apt-key adv --keyserver keys.gnupg.net --recv-keys A4EBAC6667697DD2
 crystal:
   - latest
 deploy:
