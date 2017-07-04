@@ -3,7 +3,7 @@ require "../src/concourse-summary/job"
 
 class Response
   @status_code : Int32
-  @body : String?
+  @body : String
   getter status_code
   getter body
   def initialize(@status_code, @body)
@@ -15,7 +15,7 @@ class Client
   def initialize(@path, @response)
   end
   def get(path)
-    assert { path == @path }
+    path.should eq @path
     @response
   end
 end
@@ -40,6 +40,19 @@ describe "Job" do
     it "turns empty group array in to array of one nil" do
       job = Job.from_json(%({"name":"fred","groups":[],"next_build":null,"finished_build":null}))
       job.groups.should eq [nil]
+    end
+  end
+
+  describe "#broken" do
+    it "returns false" do
+      job = Job.from_json(%({"name":"fred","groups":[]}))
+      job.broken.should be_false
+    end
+
+    it "returns true" do
+      job = Job.from_json(%({"name":"fred","groups":[],"inputs":[{"name":"A","resource":"B"}]}))
+      job.broken = {"A"=>true}
+      job.broken.should be_true
     end
   end
 end

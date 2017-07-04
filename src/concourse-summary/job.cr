@@ -1,6 +1,13 @@
 require "json"
 require "./status"
 
+class Input
+  JSON.mapping(
+    name: String,
+    resource: String,
+  )
+end
+
 class Job
   JSON.mapping(
     name: String,
@@ -8,7 +15,10 @@ class Job
     paused: Bool?,
     next_build: Status?,
     finished_build: Status?,
+    inputs: Array(Input)?,
   )
+  @broken = Hash(String, Bool).new(false)
+  setter broken
 
   def groups
     return [nil] if @groups.size == 0
@@ -21,6 +31,13 @@ class Job
 
   def running
     !!next_build
+  end
+
+  def broken
+    @inputs.try do |inputs|
+      return inputs.any? { |i| @broken[i.name] || @broken[i.resource] }
+    end
+    return false
   end
 
   def status

@@ -8,6 +8,7 @@
     <div class="succeeded" style="width: <%= data.percent("succeeded") %>%;"></div>
   </div>
   <% if data.paused %><div class="paused"></div><% end %>
+  <% if data.broken_resource %><div class="broken"></div><% end %>
   <div class="inner">
   <% data.labels.each do |label| %>
     <span class="<%= label %>"><span><%= label %></span></span>

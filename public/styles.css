@@ -20,7 +20,9 @@ a {color:#E6E7E8;}
 .errored {background:#E67E21;}
 .failed {background:#E74C3C;}
 .succeeded {background:#2ECC71;}
-.paused {position:absolute;top:0;bottom:0;left:0;right:0;box-sizing:border-box;border:14px solid #2682D5;}
+.broken, .paused {position:absolute;top:0;bottom:0;left:0;right:0;box-sizing:border-box;}
+.broken {border:14px solid #E67E21;}
+.paused {border:14px solid #2682D5;}
 .inner {position:absolute;top:0;bottom:0;left:0;right:0;text-align:center;text-decoration:none;white-space:nowrap;overflow:hidden;display:flex;justify-content:center;flex-direction:column;}
 .running .inner {height:100%;}
  @-webkit-keyframes pulseBorder {

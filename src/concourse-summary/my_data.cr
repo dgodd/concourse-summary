@@ -14,8 +14,12 @@ class MyData
   getter paused
   setter paused
   @statuses = Hash(String, Int32).new(0)
+  @broken_resource : Bool
+  getter broken_resource
+  setter broken_resource
 
   def initialize(@pipeline, @group)
+    @broken_resource = false
   end
 
   def inc(status : String)
@@ -41,7 +45,11 @@ class MyData
       pipelines.nil? || pipelines.has_key?(pipeline.name)
     end.lazy_map do |pipeline|
       client = HttpClient.new(host, username, password, login_form, team_name)
+      broken = Resource.broken(client, pipeline.url)
+
+      client = HttpClient.new(host, username, password, login_form, team_name)
       Job.all(client, pipeline.url).map do |job|
+        job.broken = broken
         {pipeline, job}
       end
     end.flatten
@@ -81,6 +89,7 @@ class MyData
         data.paused = pipeline.paused
         data.pipeline_url = pipeline.url
         data.running ||= job.running
+        data.broken_resource = job.broken
         data.inc(job.status || "pending")
         hash[key] = data
       end
