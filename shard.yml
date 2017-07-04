@@ -6,6 +6,10 @@ dependencies:
     github: sdogruyol/kemal
     branch: master
 
+targets:
+  concourse-summary:
+    main: src/concourse-summary.cr
+
 authors:
   - Dave Goddard <dave@goddard.id.au>
 
