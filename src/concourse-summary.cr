@@ -42,6 +42,11 @@ def process(data, ignore_groups)
   statuses = MyData.statuses(data)
 end
 
+get "/giphy/:q" do |env|
+  src = giphy(env.params.url["q"])
+  "<img src='#{src}'>"
+end
+
 get "/host/jobs/:host/**" do |env|
   refresh_interval,username,password,ignore_groups,collapso_toggle,login_form,team_name = setup(env)
   host = env.params.url["host"]
@@ -77,6 +82,11 @@ get "/host/:host/**" do |env|
 
   data = MyData.get_data(host, username, password, nil, login_form, team_name)
   statuses = process(data, ignore_groups)
+
+  if env.params.query.has_key?("giphy")
+    q = env.params.query["giphy"].to_s
+    giphy_src = giphy(q)
+  end
 
   json_or_html(statuses, "host")
 end
