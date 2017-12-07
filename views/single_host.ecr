@@ -1,7 +1,7 @@
 <% statuses.each do |data| %>
 <a href="https://<%= host %><%= data.href %>" target="_blank" class="outer<%= data.running ? " running" : "" %>">
   <% if giphy_src && data.all_green %>
-  <div style="height:100%;background:linear-gradient(rgba(0, 255, 0, 0.45), rgba(0, 255, 0, 0.45)),url('<%= giphy_src.sample(1)[0] %>');background-size:cover;"></div>
+  <div style="height:100%;background:linear-gradient(rgba(0, 255, 0, 0.7), rgba(0, 255, 0, 0.7)),url('<%= giphy_src.sample(1)[0] %>');background-size:cover;"></div>
   <% else %>
   <div class="status">
   <% total = 0 %>
