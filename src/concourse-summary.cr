@@ -93,6 +93,7 @@ end
 
 get "/group/:key" do |env|
   refresh_interval,username,password,ignore_groups,collapso_toggle,login_form,team_name = setup(env)
+  giphy_src = nil
 
   hosts = GROUPS[env.params.url["key"]]
   hosts = hosts.map do |host, pipelines|

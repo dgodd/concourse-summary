@@ -1,5 +1,8 @@
 <% statuses.each do |data| %>
 <a href="https://<%= host %><%= data.href %>" target="_blank" class="outer<%= data.running ? " running" : "" %>">
+  <% if giphy_src && data.all_green %>
+  <div style="height:100%;background:linear-gradient(rgba(0, 255, 0, 0.45), rgba(0, 255, 0, 0.45)),url('<%= giphy_src.sample(1)[0] %>');background-size:cover;"></div>
+  <% else %>
   <div class="status">
   <% total = 0 %>
   <% %w(paused_job aborted errored failed succeeded).each do |name| %>
@@ -10,6 +13,7 @@
     <% end %>
   <% end %>
   </div>
+  <% end %>
   <% if data.paused %><div class="paused"></div><% end %>
   <% if data.broken_resource %><div class="broken"></div><% end %>
   <div class="inner">

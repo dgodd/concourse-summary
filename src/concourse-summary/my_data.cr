@@ -39,6 +39,10 @@ class MyData
     (@statuses[status].to_f / @statuses.values.sum * 100).ceil.to_i
   end
 
+  def all_green
+    @statuses.size == 1 && @statuses.has_key?("succeeded")
+  end
+
   def self.get_data(host, username, password, pipelines = nil, login_form = false, team_name = "main")
     client = HttpClient.new(host, username, password, login_form, team_name)
     Pipeline.all(client).select do |pipeline|
