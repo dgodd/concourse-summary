@@ -1,11 +1,14 @@
 <% statuses.each do |data| %>
 <a href="https://<%= host %><%= data.href %>" target="_blank" class="outer<%= data.running ? " running" : "" %>">
   <div class="status">
-    <div class="paused_job" style="width: <%= data.percent("paused_job") %>%;"></div>
-    <div class="aborted" style="width: <%= data.percent("aborted") %>%;"></div>
-    <div class="errored" style="width: <%= data.percent("errored") %>%;"></div>
-    <div class="failed" style="width: <%= data.percent("failed") %>%;"></div>
-    <div class="succeeded" style="width: <%= data.percent("succeeded") %>%;"></div>
+  <% total = 0 %>
+  <% %w(paused_job aborted errored failed succeeded).each do |name| %>
+    <% perc = data.percent(name) %>
+    <% if perc > 0 %>
+      <div class="<%= name %>" style="left:<%= total %>%;width:<%= perc %>%;"></div>
+      <% total += perc %>
+    <% end %>
+  <% end %>
   </div>
   <% if data.paused %><div class="paused"></div><% end %>
   <% if data.broken_resource %><div class="broken"></div><% end %>

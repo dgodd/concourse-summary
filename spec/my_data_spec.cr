@@ -34,8 +34,8 @@ describe "MyData" do
       data.inc("failed")
       data.inc("succeeded")
       data.inc("succeeded")
-      data.percent("failed").should eq 33
-      data.percent("succeeded").should eq 66
+      data.percent("failed").should eq 34
+      data.percent("succeeded").should eq 67
     end
   end
 
@@ -49,7 +49,7 @@ describe "MyData" do
       statuses.first.labels.should eq ["pipeline"]
       statuses.first.paused.should be_false
       statuses.first.running.should be_false
-      statuses.first.percent("pending").should eq 100.0
+      statuses.first.percent("pending").should eq 100
     end
 
     it "handles single group" do
@@ -61,7 +61,7 @@ describe "MyData" do
       statuses.first.labels.should eq ["pipeline", "group"]
       statuses.first.paused.should be_false
       statuses.first.running.should be_false
-      statuses.first.percent("pending").should eq 100.0
+      statuses.first.percent("pending").should eq 100
     end
 
     it "handles multiple groups" do

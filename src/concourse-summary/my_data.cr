@@ -36,7 +36,7 @@ class MyData
 
   def percent(status)
     return 0 if @statuses.size == 0
-    (@statuses[status].to_f / @statuses.values.sum * 100).floor.to_i
+    (@statuses[status].to_f / @statuses.values.sum * 100).ceil.to_i
   end
 
   def self.get_data(host, username, password, pipelines = nil, login_form = false, team_name = "main")
