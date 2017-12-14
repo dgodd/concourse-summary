@@ -24,7 +24,7 @@ def setup(env)
     raise Unauthorized.new
   end
 
-  collapso_toggle = env.params.query.map {|k,_| k}
+  collapso_toggle = env.params.query.map {|k,v| k == "giphy" ? "#{k}=#{v}" : k }
   ignore_groups = env.params.query.has_key?("ignore_groups")
   if ignore_groups
     collapso_toggle = collapso_toggle - ["ignore_groups"]
