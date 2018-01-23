@@ -24,7 +24,7 @@ end
 describe "Pipeline" do
   describe ".all" do
     it "returns requested pipelines" do
-      response = Response.new(200, %([{"name":"fred","url":"","paused":false},{"name":"jane","url":"","paused":false}]))
+      response = Response.new(200, %([{"name":"fred","team_name":"","paused":false},{"name":"jane","team_name":"","paused":false}]))
       client = Client.new("/api/v1/pipelines", response)
 
       pipelines = Pipeline.all(client)
