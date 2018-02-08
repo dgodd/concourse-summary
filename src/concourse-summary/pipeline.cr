@@ -16,7 +16,7 @@ class Pipeline
     return [] of Pipeline if response.status_code == 500
     pipelines = Array(Pipeline).from_json(response.body)
     pipelines.each do |pipeline|
-      pipeline.url = "/teams/#{pipeline.team_name}/pipelines/#{pipeline.name}"
+      pipeline.url = "/teams/#{pipeline.team_name}/pipelines/#{URI.escape(pipeline.name)}"
     end
     return pipelines
   end
