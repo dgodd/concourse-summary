@@ -24,11 +24,12 @@ end
 describe "Pipeline" do
   describe ".all" do
     it "returns requested pipelines" do
-      response = Response.new(200, %([{"name":"fred","team_name":"","paused":false},{"name":"jane","team_name":"","paused":false}]))
+      response = Response.new(200, %([{"name":"fred pipeline","team_name":"main","paused":false},{"name":"jane","team_name":"team1","paused":false}]))
       client = Client.new("/api/v1/pipelines", response)
 
       pipelines = Pipeline.all(client)
-      pipelines.map(&.name).should eq ["fred","jane"]
+      pipelines.map(&.name).should eq ["fred pipeline","jane"]
+      pipelines.map(&.url).should eq ["/teams/main/pipelines/fred%20pipeline", "/teams/team1/pipelines/jane"]
     end
 
     it "raises exception if 401 status code is returned" do
