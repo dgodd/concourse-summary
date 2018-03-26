@@ -3,8 +3,7 @@ version: 0.2.0
 
 dependencies:
   kemal:
-    github: sdogruyol/kemal
-    branch: master
+    github: kemalcr/kemal
 
 targets:
   concourse-summary:
