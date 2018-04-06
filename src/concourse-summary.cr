@@ -11,8 +11,8 @@ GROUPS = parse_groups(ENV["CS_GROUPS"]? || "{}")
 
 def setup(env)
   refresh_interval = REFRESH_INTERVAL
-  username = env.store["credentials_username"]?.to_s
-  password = env.store["credentials_password"]?.to_s
+  username = env.get?("credentials_username").to_s
+  password = env.get?("credentials_password").to_s
   team_name = "main"
 
   login_form = env.params.query.has_key?("login_form")
