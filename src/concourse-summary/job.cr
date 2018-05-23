@@ -11,7 +11,7 @@ end
 class Job
   JSON.mapping(
     name: String,
-    groups: Array(String?),
+    groups: Array(String?)?,
     paused: Bool?,
     next_build: Status?,
     finished_build: Status?,
@@ -21,8 +21,8 @@ class Job
   setter broken
 
   def groups
-    return [nil] if @groups.size == 0
-    @groups
+    return [nil] if @groups.nil? || @groups.not_nil!.size == 0
+    @groups.not_nil!
   end
 
   def clear_groups
