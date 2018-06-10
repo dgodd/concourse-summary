@@ -23,7 +23,10 @@ class HttpClient
     if username.to_s.size > 0
       if login_form
         @client.basic_auth(username.to_s, password.to_s)
-        resp = @client.get("/api/v1/teams/#{team_name}/auth/token")
+        resp = @client.get("/auth/basic/token?team_name=#{team_name}")
+        if resp.status_code == 404
+          resp = @client.get("/api/v1/teams/#{team_name}/auth/token")
+        end
         cookie = resp.headers["Set-Cookie"]?
         if cookie
           cookie_name, cookie_value = cookie.split(";").first.split(/=/,2)
@@ -46,4 +49,3 @@ class HttpClient
     end
   end
 end
-
