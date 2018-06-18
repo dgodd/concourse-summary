@@ -11,14 +11,14 @@ As this app is written in [crystal](https://crystal-lang.org/) it can be run in 
 #### Using crystal run
 
 ```
-crystal dep
+shards install
 crystal run src/concourse-summary.cr
 ```
 
 #### As a binary
 
 ```
-crystal dep
+shards install
 crystal build --release src/concourse-summary.cr
 ```
 

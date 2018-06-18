@@ -8,7 +8,7 @@ def giphy(q : String) : Array(String)?
     return CACHE[q] if CACHE.has_key?(q)
     response = HTTP::Client.get "https://api.giphy.com/v1/gifs/search?api_key=#{ENV["GIPHY_API_KEY"]}&limit=100&rating=G&lang=en&q=#{URI.escape(q)}"
     data = JSON.parse(response.body)
-    CACHE[q] = data["data"].map do |img|
+    CACHE[q] = data["data"].as_a.map do |img|
       img["images"]["fixed_width"]["url"].as_s
     end
   end
