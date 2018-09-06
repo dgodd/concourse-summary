@@ -5,7 +5,6 @@ crystal: 0.26.1
 dependencies:
   kemal:
     github: sdogruyol/kemal
-    branch: master
 
 targets:
   concourse-summary:
