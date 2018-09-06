@@ -1,6 +1,6 @@
 name: concourse-summary
 version: 0.2.1
-crystal: 0.26.0
+crystal: 0.26.1
 
 dependencies:
   kemal:
