@@ -24,7 +24,7 @@ def setup(env)
     raise Unauthorized.new
   end
 
-  collapso_toggle = env.params.query.map {|k,v| k == "giphy" ? "#{k}=#{v}" : k }
+  collapso_toggle = env.params.query.map {|k,v| %w(giphy labels).includes?(k) ? "#{k}=#{v}" : k }
   ignore_groups = env.params.query.has_key?("ignore_groups")
   if ignore_groups
     collapso_toggle = collapso_toggle - ["ignore_groups"]
@@ -86,6 +86,12 @@ get "/host/:host/**" do |env|
   if env.params.query.has_key?("giphy")
     q = env.params.query["giphy"].to_s
     giphy_src = giphy(q)
+  end
+  if env.params.query.has_key?("labels")
+    q = env.params.query["labels"].to_s
+    statuses.select! do |s|
+      s.labels.any? { |l| l.includes?(q) }
+    end
   end
 
   json_or_html(statuses, "host")

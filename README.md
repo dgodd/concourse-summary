@@ -38,3 +38,17 @@ All configuration is managed using environment variables:
 | CS_GROUPS           | A json string of a chosen group name, linking to a host, pipeline and groups in concourse | '{"test":{"buildpacks.ci.cf-app.com":{"binary-builder":["automated-builds","manual-builds"],"brats":null},"diego.ci.cf-app.com":{"greenhouse":null},"capi.ci.cf-app.com":null}}' |
 | SKIP_SSL_VALIDATION | If set to "true" then SSL Validation will be ignored for all hosts                        | "true"                                                                                                                                                                           |
 | REFRESH_INTERVAL    | An integer in seconds for configuring the page refresh interval, defaults to 30           | 10                                                                                                                                                                               |
+
+## Query parameters for running instance
+
+### Labels
+
+Labels can filter the returned statuses to only those with the requested name as a substring of either the pipeline name or group name
+
+eg: [labels=ruby](https://concourse-summary-crystal.cfapps.io/host/buildpacks.ci.cf-app.com?labels=ruby)
+
+### Giphy
+
+Sets giphy backgrounds on green images to make it easier to spot fully green (and reward you for it)
+
+eg: [giphy=dog](https://concourse-summary-crystal.cfapps.io/host/buildpacks.ci.cf-app.com?giphy=dog)
