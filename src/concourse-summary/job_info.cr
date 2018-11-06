@@ -31,7 +31,7 @@ class JobInfo
     job.next_build.try do |build|
       build.start_time.try do |start_time|
         @start_time = start_time
-        run_time = Time.now.to_unix - start_time
+        run_time = Time.now.epoch - start_time
         @run_time = Time::Span.new(0, 0, run_time.to_i64).to_s
       end
     end
@@ -47,7 +47,7 @@ class JobInfo
 
   def start_time_ago_days
     start_time.try do |start|
-      (Time.now - Time.unix(start)).days
+      (Time.now - Time.epoch(start)).days
     end
   end
 
