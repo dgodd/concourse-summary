@@ -2,7 +2,7 @@
 applications:
   - name: concourse-summary-crystal
     memory: 256M
-    buildpack: https://github.com/dgodd/crystal-buildpack/releases/download/0.1.4/crystal_buildpack-v0.1.4.zip
+    buildpack: https://github.com/dgodd/crystal-buildpack/releases/download/0.1.5/crystal_buildpack-v0.1.5.zip
     env:
       HOSTS: ci.concourse.ci appdog.ci.cf-app.com buildpacks.ci.cf-app.com diego.ci.cf-app.com capi.ci.cf-app.com ci.shoetree.io?login_team=main
       CS_GROUPS: '{"test":{"buildpacks.ci.cf-app.com":{"binary-builder":["automated-builds","manual-builds"],"brats":null},"diego.ci.cf-app.com":{"greenhouse":null},"capi.ci.cf-app.com":null}}'
